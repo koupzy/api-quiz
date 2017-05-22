@@ -6,36 +6,60 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\Table(name="proposition")
  * @ORM\Entity()
- * @ORM\Table(name="category")
  *
  * @author Ange Paterson
  */
-class Category
+class Proposition
 {
     /**
+     * @var integer
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(type="smallint", options={"unsigned": true})
-     * @var integer $id
+     * @ORM\Column(type="integer", options={"unsigned": true})
      */
     protected $id;
 
     /**
-     * @ORM\Column(type="string", unique=true)
-     * @var string $name
+     * @var string $content
+     * @ORM\Column(type="string")
      */
-    protected $name;
+    protected $content;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Question", mappedBy="category", fetch="EXTRA_LAZY")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Question", inversedBy="propositions")
+     * @ORM\JoinColumn(name="question_id", referencedColumnName="id")
      * @var Collection $questions
      */
     protected $questions;
 
+    /**
+     * @var boolean
+     */
+    protected $truth;
+
     public function __construct()
     {
         $this->questions = new ArrayCollection();
+    }
+
+    /**
+     * @return bool
+     */
+    public function isTruth()
+    {
+        return $this->truth;
+    }
+
+    /**
+     * @param bool $truth
+     * @return $this
+     */
+    public function setTruth($truth)
+    {
+        $this->truth = $truth;
+        return $this;
     }
 
     /**
@@ -48,7 +72,7 @@ class Category
 
     /**
      * @param integer $id
-     * @return $this
+     * @return $this;
      */
     public function setId($id)
     {
@@ -57,20 +81,20 @@ class Category
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getName()
+    public function getContent()
     {
-        return $this->name;
+        return $this->content;
     }
 
     /**
-     * @param string $name
-     * @return $this;
+     * @param string $content
+     * @return $this
      */
-    public function setName($name)
+    public function setContent($content)
     {
-        $this->name = $name;
+        $this->content = $content;
         return $this;
     }
 
@@ -101,7 +125,7 @@ class Category
     public function setQuestions(Collection $questions)
     {
         $this->questions = new ArrayCollection();
-        foreach ($questions as $question) {
+        foreach ($questions as $question){
             $this->addQuestion($question);
         }
         return $this;
@@ -111,11 +135,13 @@ class Category
      * @param Question $question
      * @return $this
      */
-    public function removeQuestion(Question $question)
-    {
-        if (true === $this->questions->contains($question)) {
+    public function removeQuestion(Question $question){
+        if (true === $this->questions->contains($question))
+        {
             $this->questions->removeElement($question);
         }
         return $this;
     }
+
+
 }
