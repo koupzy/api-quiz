@@ -1,13 +1,14 @@
 <?php
 namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\Quiz as Quiz;
 
 /**
  * Class User
  *
- * @ORM\Entity(repositoryClass="UserRepository")
+ * @ORM\Entity()
  * @ORM\Table(name="user")
  *
  * @author Joel
@@ -16,27 +17,27 @@ class User
 {
     /**
      * @var integer
-     * @ORM\Column(name="id_user",type="integer")
+     * @ORM\Column(type="integer",options={"unsigned= true"})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var string $nom
-     * @ORM\Column(type="string",length=255,nullable=false)
+     * @var string $lastName
+     * @ORM\Column(name="last_name", type="string", length=255, nullable=true)
      */
-    private $nom;
+    private $lastName;
 
     /**
-     * @ORM\Column(type="string",length=255,nullable=false)
-     * @var string $prenom
+     * @ORM\Column(name="first_name", type="string", length=255, nullable=true)
+     * @var string $firstName
      */
-    private $prenom;
+    private $firstName;
 
     /**
      * @var string $username
-     * @ORM\Column(type="string",length=255,nullable=false)
+     * @ORM\Column(type="string",length=255, unique=true)
      */
     private $username;
 
@@ -47,8 +48,8 @@ class User
     private $password;
 
     /**
-     * @var Quiz
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Quiz",mappedBy="user")
+     * @var Collection Quiz
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Quiz", mappedBy="user", fetch="EXTRA_LAZY")
      */
     private $quizs;
 
@@ -72,47 +73,51 @@ class User
 
     /**
      * @param int $id
+     * @return $this
      */
     public function setId($id)
     {
         $this->id = $id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getNom()
-    {
-        return $this->nom;
-    }
-
-    /**
-     * @param string $nom
-     * @return $this
-     */
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getPrenom()
+    public function getLastName()
     {
-        return $this->prenom;
+        return $this->lastName;
     }
 
     /**
-     * @param string $prenom
+     * @param string $lastName
      * @return $this
      */
-    public function setPrenom($prenom)
+    public function setLastName($lastName)
     {
-        $this->prenom = $prenom;
+        $this->lastName = $lastName;
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @param string $firstName
+     * @return $this
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+        return $this;
+    }
+
+
 
     /**
      * @return string
@@ -164,16 +169,35 @@ class User
      */
     public function addQuizs(Quiz $quizs)
     {
-        $this->quizs[] = $quizs;
+        if (false === $this->quizs->contains($quizs))
+        {
+            $this->quizs->add($quizs);
+        }
+
         return $this;
     }
 
     /**
      * @param \AppBundle\Entity\Quiz $quiz
+     * @return $this
      */
     public function removeQuizs(Quiz $quiz)
     {
-        $this->quizs->removeElement($quiz);
+        if (true === $this->quizs->contains($quiz))
+        {
+            $this->quizs->removeElement($quiz);
+        }
+        return $this;
+
+    }
+
+    public function setQuizs(ArrayCollection $quizs){
+
+        $this->quizs = new ArrayCollection();
+        foreach ($quizs as $quiz){
+            $this->addQuizs($quiz);
+        }
+        return $this;
     }
 
 

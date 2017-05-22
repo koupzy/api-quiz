@@ -8,7 +8,6 @@
 
 namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints\Date;
 
 
 /**
@@ -21,31 +20,49 @@ use Symfony\Component\Validator\Constraints\Date;
 class Quiz
 {
     /**
-     * @var integer
-     * @ORM\Column(name="id_quiz")
      * @ORM\Id
-     *
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer", options={"unsigned= true"})
+     * @var integer $id
      */
     private $id;
 
     /**
-     * @var date
-     * @ORM\Column(name="date_creat",type="datetime")
+     * @var \DateTime $createdAt
+     * @ORM\Column(name="created_at",type="datetime")
      */
-    private $dateCreat;
+    private $createdAt;
 
     /**
-     * @var string
-     * @ORM\Column(name="state",type="string",length=255)
+     * @var \DateTime $updatedAt
+     * @ORM\Column(name="updated_at",type="datetime")
      */
-    private $state;
+    private $updatedAt;
+
+    /**
+     * @var boolean $pause
+     * @ORM\Column(type="boolean")
+     */
+    private $paused;
+
+    /**
+     * @var boolean $stop
+     * @ORM\Column(type="boolean")
+     */
+    private $finished;
 
     /**
      * @var User
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="quizs")
-     * @ORM\JoinColumn(name="id_quiz",referencedColumnName="id_user")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="quizs", fetch="EAGER")
+     * @ORM\JoinColumn(name="user_id",referencedColumnName="id")
      */
     private $user;
+
+    public function __construct()
+    {
+        $this->paused == false;
+        $this->finished == false;
+    }
 
     /**
      * @return int
@@ -63,41 +80,6 @@ class Quiz
         $this->id = $id;
     }
 
-    /**
-     * @return Date
-     */
-    public function getDateCreat()
-    {
-        return $this->dateCreat;
-    }
-
-    /**
-     * @param Date $dateCreat
-     * @return $this
-     */
-    public function setDateCreat($dateCreat)
-    {
-        $this->dateCreat = $dateCreat;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getState()
-    {
-        return $this->state;
-    }
-
-    /**
-     * @param string $state
-     * @return $this
-     */
-    public function setState($state)
-    {
-        $this->state = $state;
-        return $this;
-    }
 
     /**
      * @return \AppBundle\Entity\User
@@ -116,6 +98,81 @@ class Quiz
         $this->user = $user;
         return $this;
     }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param \DateTime $createdAt
+     * @return $this
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime $updatedAt
+     * @return $this
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+        return $this;
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function isPaused()
+    {
+        return $this->paused;
+    }
+
+    /**
+     * @param bool $paused
+     * @return $this
+     */
+    public function setPaused($paused)
+    {
+        $this->paused = $paused;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFinished()
+    {
+        return $this->finished;
+    }
+
+    /**
+     * @param bool $finished
+     */
+    public function setFinished($finished)
+    {
+        $this->finished = $finished;
+    }
+
+
+
+
 
 
 }
