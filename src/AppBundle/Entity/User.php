@@ -6,9 +6,11 @@ use AppBundle\Entity\Quiz as Quiz;
 
 /**
  * Class User
- * @package AppBundle\Entity
+ *
  * @ORM\Entity(repositoryClass="UserRepository")
  * @ORM\Table(name="user")
+ *
+ * @author Joel
  */
 class User
 {
@@ -52,7 +54,7 @@ class User
 
     /**
      * User constructor.
-     * @param \AppBundle\Entity\Quiz $quizs
+     * @internal param \AppBundle\Entity\Quiz $quizs
      */
     public function __construct()
     {
@@ -86,10 +88,12 @@ class User
 
     /**
      * @param string $nom
+     * @return $this
      */
     public function setNom($nom)
     {
         $this->nom = $nom;
+        return $this;
     }
 
     /**
@@ -102,10 +106,12 @@ class User
 
     /**
      * @param string $prenom
+     * @return $this
      */
     public function setPrenom($prenom)
     {
         $this->prenom = $prenom;
+        return $this;
     }
 
     /**
@@ -118,10 +124,12 @@ class User
 
     /**
      * @param string $username
+     * @return $this
      */
     public function setUsername($username)
     {
         $this->username = $username;
+        return $this;
     }
 
     /**
@@ -134,10 +142,12 @@ class User
 
     /**
      * @param string $password
+     * @return $this
      */
     public function setPassword($password)
     {
         $this->password = $password;
+        return $this;
     }
 
     /**
@@ -152,7 +162,7 @@ class User
      * @param \AppBundle\Entity\Quiz $quizs
      * @return $this
      */
-    public function addQuizs($quizs)
+    public function addQuizs(Quiz $quizs)
     {
         $this->quizs[] = $quizs;
         return $this;

@@ -11,12 +11,20 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints\Date;
 
 
+/**
+ * Class Quiz
+ * @ORM\Table(name="quiz")
+ * @ORM\Entity()
+ *
+ * @author joel
+ */
 class Quiz
 {
     /**
      * @var integer
      * @ORM\Column(name="id_quiz")
      * @ORM\Id
+     *
      */
     private $id;
 
@@ -65,10 +73,12 @@ class Quiz
 
     /**
      * @param Date $dateCreat
+     * @return $this
      */
     public function setDateCreat($dateCreat)
     {
         $this->dateCreat = $dateCreat;
+        return $this;
     }
 
     /**
@@ -81,10 +91,12 @@ class Quiz
 
     /**
      * @param string $state
+     * @return $this
      */
     public function setState($state)
     {
         $this->state = $state;
+        return $this;
     }
 
     /**
@@ -97,10 +109,12 @@ class Quiz
 
     /**
      * @param \AppBundle\Entity\User $user
+     * @return $this
      */
     public function setUser($user)
     {
         $this->user = $user;
+        return $this;
     }
 
 
