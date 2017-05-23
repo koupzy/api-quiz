@@ -19,19 +19,19 @@ class Category
      * @ORM\Column(type="smallint", options={"unsigned": true})
      * @var integer $id
      */
-    protected $id;
+    private $id;
 
     /**
      * @ORM\Column(type="string", unique=true)
      * @var string $name
      */
-    protected $name;
+    private $name;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Question", mappedBy="category", fetch="EXTRA_LAZY")
      * @var Collection $questions
      */
-    protected $questions;
+    private $questions;
 
     public function __construct()
     {

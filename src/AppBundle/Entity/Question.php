@@ -18,43 +18,53 @@ class Question
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer", options={"unsigned": true})
      * @var integer $id
-     */protected $id;
+     */
+    private $id;
 
     /**
      * @ORM\Column(type="string")
      * @var string $content
      */
-    protected $content;
+    private $content;
 
     /**
      * @var int $duration
      * @ORM\Column(type="smallint", options={"unsigned": true})
      */
-    protected $duration;
+    private $duration;
 
     /**
      * @ORM\Column(type="boolean")
      * @var boolean $multipleChoice
      */
-    protected $multipleChoice;
+    private $multipleChoice;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="questions", fetch="EAGER")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      * @var Category $category
      */
-    protected $category;
+    private $category;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Proposition", mappedBy="questions", fetch="EAGER")
      * @var Collection $propositions
      */
-    protected $propositions;
+    private $propositions;
+
+    /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="Score", mappedBy="question")
+     */
+    private $scores;
+
 
     public function __construct()
     {
         $this->multipleChoice = false;
         $this->propositions = new ArrayCollection();
+        $this->scores = new ArrayCollection();
+
     }
 
     /**
@@ -189,6 +199,55 @@ class Question
     {
         if (true === $this->propositions->contains($proposition)){
             $this->propositions->removeElement($proposition);
+        }
+        return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getScores()
+    {
+        return $this->scores;
+    }
+
+    /**
+     * @param Score $score
+     * @return $this
+     */
+    public function addScore(Score $score)
+    {
+        if (false === $this->scores->contains($score))
+        {
+            $this->scores->add($score);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Collection $scores
+     * @return $this
+     */
+    public function setScores($scores)
+    {
+        $this->scores = new ArrayCollection();
+        foreach ($scores as $score)
+        {
+            $this->addScore($score);
+        }
+        return $this;
+    }
+
+
+    /**
+     * @param Score $score
+     * @return $this
+     */
+    public function removeScore(Score $score)
+    {
+        if (true === $this->scores->contains($score))
+        {
+            $this->scores->removeElement($score);
         }
         return $this;
     }

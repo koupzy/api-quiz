@@ -19,25 +19,31 @@ class Proposition
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer", options={"unsigned": true})
      */
-    protected $id;
+    private $id;
 
     /**
      * @var string $content
      * @ORM\Column(type="string")
      */
-    protected $content;
+    private $content;
+
+    /**
+     * @var integer $point
+     * @ORM\Column(type="integer")
+     */
+    private $point;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Question", inversedBy="propositions")
      * @ORM\JoinColumn(name="question_id", referencedColumnName="id")
      * @var Collection $questions
      */
-    protected $questions;
+    private $questions;
 
     /**
      * @var boolean
      */
-    protected $truth;
+    private $truth;
 
     public function __construct()
     {
@@ -97,6 +103,24 @@ class Proposition
         $this->content = $content;
         return $this;
     }
+
+    /**
+     * @return int
+     */
+    public function getPoint()
+    {
+        return $this->point;
+    }
+
+    /**
+     * @param int $point
+     */
+    public function setPoint($point)
+    {
+        $this->point = $point;
+    }
+
+
 
     /**
      * @return Collection

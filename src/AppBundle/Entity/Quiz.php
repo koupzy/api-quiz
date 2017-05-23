@@ -7,6 +7,8 @@
  */
 
 namespace AppBundle\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 
@@ -52,16 +54,38 @@ class Quiz
     private $finished;
 
     /**
+     * @var integer $note
+     * @ORM\Column(type="integer")
+     */
+    private $note;
+
+    /**
      * @var User
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="quizs", fetch="EAGER")
      * @ORM\JoinColumn(name="user_id",referencedColumnName="id")
      */
     private $user;
 
+    /**
+     * @var Collection $scores
+     * @ORM\OneToMany(targetEntity="Score", mappedBy="quiz")
+     */
+    private $scores;
+
+    /**
+     * @var Mode
+     * @ORM\ManyToOne(targetEntity="Mode", inversedBy="quizs")
+     * @ORM\JoinColumn(name="mode_id", referencedColumnName="id")
+     */
+    private $mode;
+
+
+
     public function __construct()
     {
         $this->paused == false;
         $this->finished == false;
+        $this->scores == new ArrayCollection();
     }
 
     /**
@@ -81,23 +105,7 @@ class Quiz
     }
 
 
-    /**
-     * @return \AppBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
 
-    /**
-     * @param \AppBundle\Entity\User $user
-     * @return $this
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
-        return $this;
-    }
 
     /**
      * @return \DateTime
@@ -170,8 +178,110 @@ class Quiz
         $this->finished = $finished;
     }
 
+    /**
+     * @return int
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * @param int $note
+     * @return $this
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+        return $this;
+    }
 
 
+
+    /**
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param \AppBundle\Entity\User $user
+     * @return $this
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getScores()
+    {
+        return $this->scores;
+    }
+
+    /**
+     * @param Collection $scores
+     * @return $this
+     */
+    public function setScores(Collection $scores)
+    {
+        $this->scores = new ArrayCollection();
+        foreach ($scores as $score)
+        {
+            $this->addScore($score);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Score $score
+     * @return $this
+     */
+
+    public function addScore(Score $score)
+    {
+        if (false === $this->scores->contains($score))
+        {
+            $this->scores->add($score);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Score $score
+     * @return $this
+     */
+    public function removeScore(Score $score)
+    {
+        if (true === $this->scores->contains($score))
+        {
+            $this->scores->removeElement($score);
+        }
+        return $this;
+    }
+
+    /**
+     * @return Mode
+     */
+    public function getMode()
+    {
+        return $this->mode;
+    }
+
+    /**
+     * @param Mode $mode
+     * @return $this
+     */
+    public function setMode($mode)
+    {
+        $this->mode = $mode;
+        return $this;
+    }
 
 
 
