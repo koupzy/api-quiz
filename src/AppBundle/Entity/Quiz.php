@@ -7,6 +7,8 @@
  */
 
 namespace AppBundle\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 
@@ -52,16 +54,23 @@ class Quiz
     private $finished;
 
     /**
-     * @var User
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="quizs", fetch="EAGER")
+     * @var User $user
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="quizs", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="user_id",referencedColumnName="id")
      */
     private $user;
+
+    /**
+     * @var Collection $quizQuestions
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Score", mappedBy="quiz", fetch="EAGER")
+     */
+    private $scores;
 
     public function __construct()
     {
         $this->paused == false;
         $this->finished == false;
+        $this->scores = new ArrayCollection();
     }
 
     /**
@@ -171,8 +180,43 @@ class Quiz
     }
 
 
+    /**
+     * @param Score $scoreQ
+     * @return $this
+     */
+    public function addScoreQuiz(Score $scoreQ)
+    {
+        if (false === $this->scoreQuiz->contains($scoreQ))
+        {
+            $this->scoreQuiz->add($scoreQ);
+        }
+        return $this;
+    }
 
+    /**
+     * @param Collection $score
+     * @return $this
+     */
+    public function setScoreQuiz(Collection $score)
+    {
+        $this->scoreQuiz = new ArrayCollection();
+        foreach ($score as $scoreQ)
+        {
+            $this->addScoreQuiz($scoreQ);
+        }
+        return $this;
+    }
 
-
-
+    /**
+     * @param Score $scoreQ
+     * @return $this
+     */
+    public function removeScoreQuiz(Score $scoreQ)
+    {
+        if (true === $this->scoreQuiz->contains($scoreQ))
+        {
+            $this->scoreQuiz->removeElement($scoreQ);
+        }
+        return $this;
+    }
 }
