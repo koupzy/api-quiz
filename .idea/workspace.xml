@@ -2,8 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16ac8c49-dc43-4f51-a474-530abbc0e481" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Category.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Proposition.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Question.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/api_quiz_last.iml" afterPath="$PROJECT_DIR$/.idea/api_quiz_last.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/default/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/default/index.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer-setup.php" afterPath="$PROJECT_DIR$/composer-setup.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Quiz.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Quiz.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/User.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/User.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/config.php" afterPath="$PROJECT_DIR$/web/config.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -12,15 +22,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
-    <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_TABLE_DETAILS" value="true" />
-    <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
@@ -28,9 +29,47 @@
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/User.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="288">
-              <caret line="19" column="60" lean-forward="false" selection-start-line="19" selection-start-column="60" selection-end-line="19" selection-end-column="60" />
+              <caret line="20" column="60" lean-forward="false" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
               <folding>
                 <element signature="e#34#82#0#PHP" expanded="true" />
+                <marker date="1495536690659" expanded="true" signature="200:282" ph=" Class User ..." />
+                <marker date="1495536690659" expanded="true" signature="305:452" ph=" @var integer ..." />
+                <marker date="1495536690659" expanded="true" signature="480:594" ph=" @var string $lastName ..." />
+                <marker date="1495536690659" expanded="true" signature="628:744" ph=" @ORM\Column(name=&quot;first_name&quot;, type=&quot;string&quot;, length=255, nullable=true) ..." />
+                <marker date="1495536690659" expanded="true" signature="779:872" ph=" @var string $username ..." />
+                <marker date="1495536690659" expanded="true" signature="906:986" ph=" @var string $password ..." />
+                <marker date="1495536690659" expanded="true" signature="1020:1151" ph=" @var Collection Quiz ..." />
+                <marker date="1495536690659" expanded="true" signature="1182:1266" ph=" User constructor. ..." />
+                <marker date="1495536690659" expanded="true" signature="1302:1360" ph="{...}" />
+                <marker date="1495536690659" expanded="true" signature="1370:1395" ph=" @return int ..." />
+                <marker date="1495536690659" expanded="true" signature="1425:1463" ph="{...}" />
+                <marker date="1495536690659" expanded="true" signature="1472:1521" ph=" @param int $id ..." />
+                <marker date="1495536690659" expanded="true" signature="1554:1613" ph="{...}" />
+                <marker date="1495536690659" expanded="true" signature="1622:1650" ph=" @return string ..." />
+                <marker date="1495536690659" expanded="true" signature="1686:1730" ph="{...}" />
+                <marker date="1495536690659" expanded="true" signature="1739:1797" ph=" @param string $lastName ..." />
+                <marker date="1495536690659" expanded="true" signature="1842:1913" ph="{...}" />
+                <marker date="1495536690659" expanded="true" signature="1922:1950" ph=" @return string ..." />
+                <marker date="1495536690659" expanded="true" signature="1987:2032" ph="{...}" />
+                <marker date="1495536690659" expanded="true" signature="2041:2100" ph=" @param string $firstName ..." />
+                <marker date="1495536690659" expanded="true" signature="2147:2220" ph="{...}" />
+                <marker date="1495536690659" expanded="true" signature="2231:2259" ph=" @return string ..." />
+                <marker date="1495536690659" expanded="true" signature="2295:2339" ph="{...}" />
+                <marker date="1495536690659" expanded="true" signature="2348:2406" ph=" @param string $username ..." />
+                <marker date="1495536690659" expanded="true" signature="2451:2522" ph="{...}" />
+                <marker date="1495536690659" expanded="true" signature="2531:2559" ph=" @return string ..." />
+                <marker date="1495536690659" expanded="true" signature="2595:2639" ph="{...}" />
+                <marker date="1495536690659" expanded="true" signature="2648:2706" ph=" @param string $password ..." />
+                <marker date="1495536690659" expanded="true" signature="2751:2822" ph="{...}" />
+                <marker date="1495536690659" expanded="true" signature="2831:2875" ph=" @return \AppBundle\Entity\Quiz ..." />
+                <marker date="1495536690659" expanded="true" signature="2908:2949" ph="{...}" />
+                <marker date="1495536690659" expanded="true" signature="2958:3029" ph=" @param \AppBundle\Entity\Quiz $quizs ..." />
+                <marker date="1495536690659" expanded="true" signature="3073:3221" ph="{...}" />
+                <marker date="1495536690659" expanded="true" signature="3133:3192" ph="{...}" />
+                <marker date="1495536690659" expanded="true" signature="3230:3300" ph=" @param \AppBundle\Entity\Quiz $quiz ..." />
+                <marker date="1495536690659" expanded="true" signature="3346:3501" ph="{...}" />
+                <marker date="1495536690659" expanded="true" signature="3404:3472" ph="{...}" />
+                <marker date="1495536690659" expanded="true" signature="3638:3683" ph="..." />
               </folding>
             </state>
           </provider>
@@ -52,7 +91,7 @@
         <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="54">
-              <caret line="3" column="23" lean-forward="true" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
+              <caret line="3" column="23" lean-forward="false" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -61,43 +100,14 @@
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="10" lean-forward="false" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="10" />
+            <state relative-caret-position="252">
+              <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
-  </component>
-  <component name="FrameworkCommandLineHistory">
-    <commandsHistory>
-      <command text="php bin/check.php" />
-      <command text="git status" />
-      <command text="git add src/AppBundle/Entity/Quiz.php" />
-      <command text="git add src/AppBundle/Entity/User.php" />
-      <command text="git status" />
-      <command text="git commit src/AppBundle/Entity/User.php  src/AppBundle/Entity/Quiz.php" />
-      <command text="git commit -m src/AppBundle/Entity/User.php  src/AppBundle/Entity/Quiz.php" />
-      <command text="git status" />
-      <command text="git add src/AppBundle/Entity/User.php" />
-      <command text="git commit -m src/AppBundle/Entity/User.php  " />
-      <command text="git push" />
-      <command text="git remote show" />
-      <command text="git remote show origin" />
-      <command text="git branch" />
-      <command text="git status" />
-      <command text="git add .gitignore" />
-      <command text="git ci" />
-      <command text="git commit" />
-      <command text="git st    " />
-      <command text="git add." />
-      <command text="git add . " />
-      <command text="git ci" />
-      <command text="git -m ci" />
-      <command text="git -m commit" />
-      <command text="git -F ci" />
-    </commandsHistory>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -298,12 +308,12 @@
       <workItem from="1495471732302" duration="2046000" />
       <workItem from="1495475428034" duration="4982000" />
       <workItem from="1495529695310" duration="2156000" />
-      <workItem from="1495535150797" duration="1382000" />
+      <workItem from="1495535150797" duration="2840000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43565000" />
+    <option name="totallyTimeSpent" value="45023000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1303" height="780" extended-state="6" />
@@ -387,6 +397,44 @@
           <caret line="19" column="60" lean-forward="false" selection-start-line="19" selection-start-column="60" selection-end-line="19" selection-end-column="60" />
           <folding>
             <element signature="e#34#82#0#PHP" expanded="true" />
+            <marker date="1495536690659" expanded="true" signature="200:282" ph=" Class User ..." />
+            <marker date="1495536690659" expanded="true" signature="305:452" ph=" @var integer ..." />
+            <marker date="1495536690659" expanded="true" signature="480:594" ph=" @var string $lastName ..." />
+            <marker date="1495536690659" expanded="true" signature="628:744" ph=" @ORM\Column(name=&quot;first_name&quot;, type=&quot;string&quot;, length=255, nullable=true) ..." />
+            <marker date="1495536690659" expanded="true" signature="779:872" ph=" @var string $username ..." />
+            <marker date="1495536690659" expanded="true" signature="906:986" ph=" @var string $password ..." />
+            <marker date="1495536690659" expanded="true" signature="1020:1151" ph=" @var Collection Quiz ..." />
+            <marker date="1495536690659" expanded="true" signature="1182:1266" ph=" User constructor. ..." />
+            <marker date="1495536690659" expanded="true" signature="1302:1360" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1370:1395" ph=" @return int ..." />
+            <marker date="1495536690659" expanded="true" signature="1425:1463" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1472:1521" ph=" @param int $id ..." />
+            <marker date="1495536690659" expanded="true" signature="1554:1613" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1622:1650" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="1686:1730" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1739:1797" ph=" @param string $lastName ..." />
+            <marker date="1495536690659" expanded="true" signature="1842:1913" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1922:1950" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="1987:2032" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2041:2100" ph=" @param string $firstName ..." />
+            <marker date="1495536690659" expanded="true" signature="2147:2220" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2231:2259" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="2295:2339" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2348:2406" ph=" @param string $username ..." />
+            <marker date="1495536690659" expanded="true" signature="2451:2522" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2531:2559" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="2595:2639" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2648:2706" ph=" @param string $password ..." />
+            <marker date="1495536690659" expanded="true" signature="2751:2822" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2831:2875" ph=" @return \AppBundle\Entity\Quiz ..." />
+            <marker date="1495536690659" expanded="true" signature="2908:2949" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2958:3029" ph=" @param \AppBundle\Entity\Quiz $quizs ..." />
+            <marker date="1495536690659" expanded="true" signature="3073:3221" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3133:3192" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3230:3300" ph=" @param \AppBundle\Entity\Quiz $quiz ..." />
+            <marker date="1495536690659" expanded="true" signature="3346:3501" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3404:3472" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3638:3683" ph="..." />
           </folding>
         </state>
       </provider>
@@ -407,6 +455,44 @@
           <caret line="19" column="60" lean-forward="false" selection-start-line="19" selection-start-column="60" selection-end-line="19" selection-end-column="60" />
           <folding>
             <element signature="e#34#82#0#PHP" expanded="true" />
+            <marker date="1495536690659" expanded="true" signature="200:282" ph=" Class User ..." />
+            <marker date="1495536690659" expanded="true" signature="305:452" ph=" @var integer ..." />
+            <marker date="1495536690659" expanded="true" signature="480:594" ph=" @var string $lastName ..." />
+            <marker date="1495536690659" expanded="true" signature="628:744" ph=" @ORM\Column(name=&quot;first_name&quot;, type=&quot;string&quot;, length=255, nullable=true) ..." />
+            <marker date="1495536690659" expanded="true" signature="779:872" ph=" @var string $username ..." />
+            <marker date="1495536690659" expanded="true" signature="906:986" ph=" @var string $password ..." />
+            <marker date="1495536690659" expanded="true" signature="1020:1151" ph=" @var Collection Quiz ..." />
+            <marker date="1495536690659" expanded="true" signature="1182:1266" ph=" User constructor. ..." />
+            <marker date="1495536690659" expanded="true" signature="1302:1360" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1370:1395" ph=" @return int ..." />
+            <marker date="1495536690659" expanded="true" signature="1425:1463" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1472:1521" ph=" @param int $id ..." />
+            <marker date="1495536690659" expanded="true" signature="1554:1613" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1622:1650" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="1686:1730" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1739:1797" ph=" @param string $lastName ..." />
+            <marker date="1495536690659" expanded="true" signature="1842:1913" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1922:1950" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="1987:2032" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2041:2100" ph=" @param string $firstName ..." />
+            <marker date="1495536690659" expanded="true" signature="2147:2220" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2231:2259" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="2295:2339" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2348:2406" ph=" @param string $username ..." />
+            <marker date="1495536690659" expanded="true" signature="2451:2522" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2531:2559" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="2595:2639" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2648:2706" ph=" @param string $password ..." />
+            <marker date="1495536690659" expanded="true" signature="2751:2822" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2831:2875" ph=" @return \AppBundle\Entity\Quiz ..." />
+            <marker date="1495536690659" expanded="true" signature="2908:2949" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2958:3029" ph=" @param \AppBundle\Entity\Quiz $quizs ..." />
+            <marker date="1495536690659" expanded="true" signature="3073:3221" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3133:3192" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3230:3300" ph=" @param \AppBundle\Entity\Quiz $quiz ..." />
+            <marker date="1495536690659" expanded="true" signature="3346:3501" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3404:3472" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3638:3683" ph="..." />
           </folding>
         </state>
       </provider>
@@ -442,6 +528,44 @@
           <caret line="38" column="71" lean-forward="false" selection-start-line="38" selection-start-column="71" selection-end-line="38" selection-end-column="71" />
           <folding>
             <element signature="e#34#82#0#PHP" expanded="true" />
+            <marker date="1495536690659" expanded="true" signature="200:282" ph=" Class User ..." />
+            <marker date="1495536690659" expanded="true" signature="305:452" ph=" @var integer ..." />
+            <marker date="1495536690659" expanded="true" signature="480:594" ph=" @var string $lastName ..." />
+            <marker date="1495536690659" expanded="true" signature="628:744" ph=" @ORM\Column(name=&quot;first_name&quot;, type=&quot;string&quot;, length=255, nullable=true) ..." />
+            <marker date="1495536690659" expanded="true" signature="779:872" ph=" @var string $username ..." />
+            <marker date="1495536690659" expanded="true" signature="906:986" ph=" @var string $password ..." />
+            <marker date="1495536690659" expanded="true" signature="1020:1151" ph=" @var Collection Quiz ..." />
+            <marker date="1495536690659" expanded="true" signature="1182:1266" ph=" User constructor. ..." />
+            <marker date="1495536690659" expanded="true" signature="1302:1360" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1370:1395" ph=" @return int ..." />
+            <marker date="1495536690659" expanded="true" signature="1425:1463" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1472:1521" ph=" @param int $id ..." />
+            <marker date="1495536690659" expanded="true" signature="1554:1613" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1622:1650" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="1686:1730" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1739:1797" ph=" @param string $lastName ..." />
+            <marker date="1495536690659" expanded="true" signature="1842:1913" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1922:1950" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="1987:2032" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2041:2100" ph=" @param string $firstName ..." />
+            <marker date="1495536690659" expanded="true" signature="2147:2220" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2231:2259" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="2295:2339" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2348:2406" ph=" @param string $username ..." />
+            <marker date="1495536690659" expanded="true" signature="2451:2522" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2531:2559" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="2595:2639" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2648:2706" ph=" @param string $password ..." />
+            <marker date="1495536690659" expanded="true" signature="2751:2822" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2831:2875" ph=" @return \AppBundle\Entity\Quiz ..." />
+            <marker date="1495536690659" expanded="true" signature="2908:2949" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2958:3029" ph=" @param \AppBundle\Entity\Quiz $quizs ..." />
+            <marker date="1495536690659" expanded="true" signature="3073:3221" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3133:3192" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3230:3300" ph=" @param \AppBundle\Entity\Quiz $quiz ..." />
+            <marker date="1495536690659" expanded="true" signature="3346:3501" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3404:3472" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3638:3683" ph="..." />
           </folding>
         </state>
       </provider>
@@ -477,6 +601,44 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#34#82#0#PHP" expanded="true" />
+            <marker date="1495536690659" expanded="true" signature="200:282" ph=" Class User ..." />
+            <marker date="1495536690659" expanded="true" signature="305:452" ph=" @var integer ..." />
+            <marker date="1495536690659" expanded="true" signature="480:594" ph=" @var string $lastName ..." />
+            <marker date="1495536690659" expanded="true" signature="628:744" ph=" @ORM\Column(name=&quot;first_name&quot;, type=&quot;string&quot;, length=255, nullable=true) ..." />
+            <marker date="1495536690659" expanded="true" signature="779:872" ph=" @var string $username ..." />
+            <marker date="1495536690659" expanded="true" signature="906:986" ph=" @var string $password ..." />
+            <marker date="1495536690659" expanded="true" signature="1020:1151" ph=" @var Collection Quiz ..." />
+            <marker date="1495536690659" expanded="true" signature="1182:1266" ph=" User constructor. ..." />
+            <marker date="1495536690659" expanded="true" signature="1302:1360" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1370:1395" ph=" @return int ..." />
+            <marker date="1495536690659" expanded="true" signature="1425:1463" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1472:1521" ph=" @param int $id ..." />
+            <marker date="1495536690659" expanded="true" signature="1554:1613" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1622:1650" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="1686:1730" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1739:1797" ph=" @param string $lastName ..." />
+            <marker date="1495536690659" expanded="true" signature="1842:1913" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1922:1950" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="1987:2032" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2041:2100" ph=" @param string $firstName ..." />
+            <marker date="1495536690659" expanded="true" signature="2147:2220" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2231:2259" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="2295:2339" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2348:2406" ph=" @param string $username ..." />
+            <marker date="1495536690659" expanded="true" signature="2451:2522" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2531:2559" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="2595:2639" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2648:2706" ph=" @param string $password ..." />
+            <marker date="1495536690659" expanded="true" signature="2751:2822" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2831:2875" ph=" @return \AppBundle\Entity\Quiz ..." />
+            <marker date="1495536690659" expanded="true" signature="2908:2949" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2958:3029" ph=" @param \AppBundle\Entity\Quiz $quizs ..." />
+            <marker date="1495536690659" expanded="true" signature="3073:3221" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3133:3192" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3230:3300" ph=" @param \AppBundle\Entity\Quiz $quiz ..." />
+            <marker date="1495536690659" expanded="true" signature="3346:3501" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3404:3472" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3638:3683" ph="..." />
           </folding>
         </state>
       </provider>
@@ -497,6 +659,44 @@
           <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding>
             <element signature="e#34#82#0#PHP" expanded="true" />
+            <marker date="1495536690659" expanded="true" signature="200:282" ph=" Class User ..." />
+            <marker date="1495536690659" expanded="true" signature="305:452" ph=" @var integer ..." />
+            <marker date="1495536690659" expanded="true" signature="480:594" ph=" @var string $lastName ..." />
+            <marker date="1495536690659" expanded="true" signature="628:744" ph=" @ORM\Column(name=&quot;first_name&quot;, type=&quot;string&quot;, length=255, nullable=true) ..." />
+            <marker date="1495536690659" expanded="true" signature="779:872" ph=" @var string $username ..." />
+            <marker date="1495536690659" expanded="true" signature="906:986" ph=" @var string $password ..." />
+            <marker date="1495536690659" expanded="true" signature="1020:1151" ph=" @var Collection Quiz ..." />
+            <marker date="1495536690659" expanded="true" signature="1182:1266" ph=" User constructor. ..." />
+            <marker date="1495536690659" expanded="true" signature="1302:1360" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1370:1395" ph=" @return int ..." />
+            <marker date="1495536690659" expanded="true" signature="1425:1463" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1472:1521" ph=" @param int $id ..." />
+            <marker date="1495536690659" expanded="true" signature="1554:1613" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1622:1650" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="1686:1730" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1739:1797" ph=" @param string $lastName ..." />
+            <marker date="1495536690659" expanded="true" signature="1842:1913" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1922:1950" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="1987:2032" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2041:2100" ph=" @param string $firstName ..." />
+            <marker date="1495536690659" expanded="true" signature="2147:2220" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2231:2259" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="2295:2339" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2348:2406" ph=" @param string $username ..." />
+            <marker date="1495536690659" expanded="true" signature="2451:2522" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2531:2559" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="2595:2639" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2648:2706" ph=" @param string $password ..." />
+            <marker date="1495536690659" expanded="true" signature="2751:2822" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2831:2875" ph=" @return \AppBundle\Entity\Quiz ..." />
+            <marker date="1495536690659" expanded="true" signature="2908:2949" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2958:3029" ph=" @param \AppBundle\Entity\Quiz $quizs ..." />
+            <marker date="1495536690659" expanded="true" signature="3073:3221" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3133:3192" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3230:3300" ph=" @param \AppBundle\Entity\Quiz $quiz ..." />
+            <marker date="1495536690659" expanded="true" signature="3346:3501" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3404:3472" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3638:3683" ph="..." />
           </folding>
         </state>
       </provider>
@@ -517,6 +717,44 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#34#82#0#PHP" expanded="true" />
+            <marker date="1495536690659" expanded="true" signature="200:282" ph=" Class User ..." />
+            <marker date="1495536690659" expanded="true" signature="305:452" ph=" @var integer ..." />
+            <marker date="1495536690659" expanded="true" signature="480:594" ph=" @var string $lastName ..." />
+            <marker date="1495536690659" expanded="true" signature="628:744" ph=" @ORM\Column(name=&quot;first_name&quot;, type=&quot;string&quot;, length=255, nullable=true) ..." />
+            <marker date="1495536690659" expanded="true" signature="779:872" ph=" @var string $username ..." />
+            <marker date="1495536690659" expanded="true" signature="906:986" ph=" @var string $password ..." />
+            <marker date="1495536690659" expanded="true" signature="1020:1151" ph=" @var Collection Quiz ..." />
+            <marker date="1495536690659" expanded="true" signature="1182:1266" ph=" User constructor. ..." />
+            <marker date="1495536690659" expanded="true" signature="1302:1360" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1370:1395" ph=" @return int ..." />
+            <marker date="1495536690659" expanded="true" signature="1425:1463" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1472:1521" ph=" @param int $id ..." />
+            <marker date="1495536690659" expanded="true" signature="1554:1613" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1622:1650" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="1686:1730" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1739:1797" ph=" @param string $lastName ..." />
+            <marker date="1495536690659" expanded="true" signature="1842:1913" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1922:1950" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="1987:2032" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2041:2100" ph=" @param string $firstName ..." />
+            <marker date="1495536690659" expanded="true" signature="2147:2220" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2231:2259" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="2295:2339" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2348:2406" ph=" @param string $username ..." />
+            <marker date="1495536690659" expanded="true" signature="2451:2522" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2531:2559" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="2595:2639" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2648:2706" ph=" @param string $password ..." />
+            <marker date="1495536690659" expanded="true" signature="2751:2822" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2831:2875" ph=" @return \AppBundle\Entity\Quiz ..." />
+            <marker date="1495536690659" expanded="true" signature="2908:2949" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2958:3029" ph=" @param \AppBundle\Entity\Quiz $quizs ..." />
+            <marker date="1495536690659" expanded="true" signature="3073:3221" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3133:3192" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3230:3300" ph=" @param \AppBundle\Entity\Quiz $quiz ..." />
+            <marker date="1495536690659" expanded="true" signature="3346:3501" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3404:3472" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3638:3683" ph="..." />
           </folding>
         </state>
       </provider>
@@ -527,6 +765,44 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#34#82#0#PHP" expanded="true" />
+            <marker date="1495536690659" expanded="true" signature="200:282" ph=" Class User ..." />
+            <marker date="1495536690659" expanded="true" signature="305:452" ph=" @var integer ..." />
+            <marker date="1495536690659" expanded="true" signature="480:594" ph=" @var string $lastName ..." />
+            <marker date="1495536690659" expanded="true" signature="628:744" ph=" @ORM\Column(name=&quot;first_name&quot;, type=&quot;string&quot;, length=255, nullable=true) ..." />
+            <marker date="1495536690659" expanded="true" signature="779:872" ph=" @var string $username ..." />
+            <marker date="1495536690659" expanded="true" signature="906:986" ph=" @var string $password ..." />
+            <marker date="1495536690659" expanded="true" signature="1020:1151" ph=" @var Collection Quiz ..." />
+            <marker date="1495536690659" expanded="true" signature="1182:1266" ph=" User constructor. ..." />
+            <marker date="1495536690659" expanded="true" signature="1302:1360" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1370:1395" ph=" @return int ..." />
+            <marker date="1495536690659" expanded="true" signature="1425:1463" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1472:1521" ph=" @param int $id ..." />
+            <marker date="1495536690659" expanded="true" signature="1554:1613" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1622:1650" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="1686:1730" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1739:1797" ph=" @param string $lastName ..." />
+            <marker date="1495536690659" expanded="true" signature="1842:1913" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1922:1950" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="1987:2032" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2041:2100" ph=" @param string $firstName ..." />
+            <marker date="1495536690659" expanded="true" signature="2147:2220" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2231:2259" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="2295:2339" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2348:2406" ph=" @param string $username ..." />
+            <marker date="1495536690659" expanded="true" signature="2451:2522" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2531:2559" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="2595:2639" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2648:2706" ph=" @param string $password ..." />
+            <marker date="1495536690659" expanded="true" signature="2751:2822" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2831:2875" ph=" @return \AppBundle\Entity\Quiz ..." />
+            <marker date="1495536690659" expanded="true" signature="2908:2949" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2958:3029" ph=" @param \AppBundle\Entity\Quiz $quizs ..." />
+            <marker date="1495536690659" expanded="true" signature="3073:3221" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3133:3192" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3230:3300" ph=" @param \AppBundle\Entity\Quiz $quiz ..." />
+            <marker date="1495536690659" expanded="true" signature="3346:3501" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3404:3472" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3638:3683" ph="..." />
           </folding>
         </state>
       </provider>
@@ -562,9 +838,47 @@
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/User.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
-          <caret line="19" column="60" lean-forward="false" selection-start-line="19" selection-start-column="60" selection-end-line="19" selection-end-column="60" />
+          <caret line="20" column="60" lean-forward="false" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
           <folding>
             <element signature="e#34#82#0#PHP" expanded="true" />
+            <marker date="1495536690659" expanded="true" signature="200:282" ph=" Class User ..." />
+            <marker date="1495536690659" expanded="true" signature="305:452" ph=" @var integer ..." />
+            <marker date="1495536690659" expanded="true" signature="480:594" ph=" @var string $lastName ..." />
+            <marker date="1495536690659" expanded="true" signature="628:744" ph=" @ORM\Column(name=&quot;first_name&quot;, type=&quot;string&quot;, length=255, nullable=true) ..." />
+            <marker date="1495536690659" expanded="true" signature="779:872" ph=" @var string $username ..." />
+            <marker date="1495536690659" expanded="true" signature="906:986" ph=" @var string $password ..." />
+            <marker date="1495536690659" expanded="true" signature="1020:1151" ph=" @var Collection Quiz ..." />
+            <marker date="1495536690659" expanded="true" signature="1182:1266" ph=" User constructor. ..." />
+            <marker date="1495536690659" expanded="true" signature="1302:1360" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1370:1395" ph=" @return int ..." />
+            <marker date="1495536690659" expanded="true" signature="1425:1463" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1472:1521" ph=" @param int $id ..." />
+            <marker date="1495536690659" expanded="true" signature="1554:1613" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1622:1650" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="1686:1730" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1739:1797" ph=" @param string $lastName ..." />
+            <marker date="1495536690659" expanded="true" signature="1842:1913" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="1922:1950" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="1987:2032" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2041:2100" ph=" @param string $firstName ..." />
+            <marker date="1495536690659" expanded="true" signature="2147:2220" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2231:2259" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="2295:2339" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2348:2406" ph=" @param string $username ..." />
+            <marker date="1495536690659" expanded="true" signature="2451:2522" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2531:2559" ph=" @return string ..." />
+            <marker date="1495536690659" expanded="true" signature="2595:2639" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2648:2706" ph=" @param string $password ..." />
+            <marker date="1495536690659" expanded="true" signature="2751:2822" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2831:2875" ph=" @return \AppBundle\Entity\Quiz ..." />
+            <marker date="1495536690659" expanded="true" signature="2908:2949" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="2958:3029" ph=" @param \AppBundle\Entity\Quiz $quizs ..." />
+            <marker date="1495536690659" expanded="true" signature="3073:3221" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3133:3192" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3230:3300" ph=" @param \AppBundle\Entity\Quiz $quiz ..." />
+            <marker date="1495536690659" expanded="true" signature="3346:3501" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3404:3472" ph="{...}" />
+            <marker date="1495536690659" expanded="true" signature="3638:3683" ph="..." />
           </folding>
         </state>
       </provider>
@@ -582,15 +896,23 @@
     <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
-          <caret line="3" column="23" lean-forward="true" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
+          <caret line="3" column="23" lean-forward="false" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Category.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="10" lean-forward="false" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="10" />
+        <state relative-caret-position="252">
+          <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
           <folding />
         </state>
       </provider>
