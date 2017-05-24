@@ -1,0 +1,2 @@
+api_quiz_category:
+    resource: '@AppBundle/Resources/config/routing/category.yml'

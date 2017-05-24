@@ -1,0 +1,4 @@
+api_quiz_category_list:
+   path: /categories
+   defaults: {_controller: AppBundle:Category:list}
+   methods: GET

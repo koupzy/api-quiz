@@ -1,5 +1,4 @@
 app:
-    resource: "@AppBundle/Resources/Config/routing.yml"
-
-
-
+    resource: '@AppBundle/Resources/config/routing.yml'
+    prefix: /{version}/{protocol}
+    defaults: {version: v1, protocol: rest}
