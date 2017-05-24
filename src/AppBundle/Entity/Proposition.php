@@ -28,28 +28,28 @@ class Proposition
     private $content;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Question", inversedBy="propositions")
-     * @ORM\JoinColumn(name="question_id", referencedColumnName="id")
-     * @var Collection $questions
-     */
-    private $questions;
-
-    /**
      * @ORM\Column(type="boolean")
      * @var boolean
      */
     private $truth;
 
     /**
-     * @var integer $note
+     * @var integer $point
      * @ORM\Column(type="smallint", options={"unsigned": true})
      */
     private $point;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Question", inversedBy="propositions")
+     * @ORM\JoinColumn(name="question_id", referencedColumnName="id")
+     * @var Question $question
+     */
+    private $question;
+
     public function __construct()
     {
-        $this->questions = new ArrayCollection();
         $this->point = 2;
+        $this->truth = true;
     }
 
     /**
@@ -109,45 +109,34 @@ class Proposition
     /**
      * @return Collection
      */
-    public function getQuestions()
+    public function getQuestion()
     {
-        return $this->questions;
+        return $this->question;
     }
 
     /**
      * @param Question $question
      * @return $this
      */
-    public function addQuestion(Question $question)
+    public function setQuestion(Question $question)
     {
-        if (false === $this->questions->contains($question)) {
-            $this->questions->add($question);
-        }
+        $this->question = $question;
         return $this;
     }
 
     /**
-     * @param Collection $questions
-     * @return $this
+     * @return int
      */
-    public function setQuestions(Collection $questions)
+    public function getPoint()
     {
-        $this->questions = new ArrayCollection();
-        foreach ($questions as $question){
-            $this->addQuestion($question);
-        }
-        return $this;
+        return $this->point;
     }
 
     /**
-     * @param Question $question
-     * @return $this
+     * @param int $point
      */
-    public function removeQuestion(Question $question){
-        if (true === $this->questions->contains($question))
-        {
-            $this->questions->removeElement($question);
-        }
-        return $this;
+    public function setPoint($point)
+    {
+        $this->point = $point;
     }
 }

@@ -14,7 +14,7 @@ class Score
      * @ORM\Column(type="boolean")
      * @var boolean $concord
      */
-    private $truth;
+    private $match;
     /**
      * @ORM\Id()
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Question", inversedBy="scoreQuestions")
@@ -75,18 +75,18 @@ class Score
     /**
      * @return bool
      */
-    public function isTruth()
+    public function isMatch()
     {
-        return $this->truth;
+        return $this->match;
     }
 
     /**
      * @return $this
-     * @param bool $truth
+     * @param bool $match
      */
-    public function setTruth($truth)
+    public function setMatch($match)
     {
-        $this->truth = $truth;
+        $this->match = $match;
         return $this;
     }
 

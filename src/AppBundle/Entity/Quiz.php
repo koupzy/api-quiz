@@ -62,9 +62,15 @@ class Quiz
 
     /**
      * @var Collection $quizQuestions
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Score", mappedBy="quiz", fetch="EAGER")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Score", mappedBy="quiz", fetch="EXTRA_LAZY")
      */
     private $scores;
+
+    /**
+     * @var integer $note
+     * @ORM\Column(type="smallint")
+     */
+    private $note;
 
     public function __construct()
     {
@@ -217,6 +223,24 @@ class Quiz
         {
             $this->scoreQuiz->removeElement($scoreQ);
         }
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * @param int $note
+     * @return $this
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
         return $this;
     }
 }
