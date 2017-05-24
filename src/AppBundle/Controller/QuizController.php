@@ -9,7 +9,15 @@
 namespace AppBundle\Controller;
 
 
-class QuizController
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Annotation\Route;
+
+class QuizController extends Controller
 {
+
+    public function createQuizAction()
+    {
+
+    }
 
 }

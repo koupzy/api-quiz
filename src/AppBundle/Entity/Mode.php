@@ -35,7 +35,7 @@ class Mode
 
     /**
      * @var Collection
-     * @ORM\OneToMany(targetEntity="Quiz", mappedBy="mode")
+     * @ORM\OneToMany(targetEntity="Quiz", mappedBy="mode", fetch="EXTRA_LAZY")
      */
     private $quizs;
 

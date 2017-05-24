@@ -68,24 +68,6 @@ class Question
     }
 
     /**
-     * @return bool
-     */
-    public function hasMultipleChoice()
-    {
-        return $this->multipleChoice;
-    }
-
-    /**
-     * @param bool $multipleChoice
-     * @return $this
-     */
-    public function setMultipleChoice($multipleChoice)
-    {
-        $this->multipleChoice = $multipleChoice;
-        return $this;
-    }
-
-    /**
      * @return integer
      */
     public function getId()
@@ -136,6 +118,24 @@ class Question
     public function setDuration($duration)
     {
         $this->duration = $duration;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasMultipleChoice()
+    {
+        return $this->multipleChoice;
+    }
+
+    /**
+     * @param bool $multipleChoice
+     * @return $this
+     */
+    public function setMultipleChoice($multipleChoice)
+    {
+        $this->multipleChoice = $multipleChoice;
         return $this;
     }
 
