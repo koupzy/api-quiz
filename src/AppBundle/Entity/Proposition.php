@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Proposition
 {
     /**
-     * @var integer
+     * @var integer $id
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer", options={"unsigned": true})
@@ -28,44 +28,28 @@ class Proposition
     private $content;
 
     /**
+     * @ORM\Column(type="boolean")
+     * @var boolean
+     */
+    private $truth;
+
+    /**
      * @var integer $point
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="smallint", options={"unsigned": true})
      */
     private $point;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Question", inversedBy="propositions")
      * @ORM\JoinColumn(name="question_id", referencedColumnName="id")
-     * @var Collection $questions
+     * @var Question $question
      */
-    private $questions;
-
-    /**
-     * @var boolean
-     */
-    private $truth;
+    private $question;
 
     public function __construct()
     {
-        $this->questions = new ArrayCollection();
-    }
-
-    /**
-     * @return bool
-     */
-    public function isTruth()
-    {
-        return $this->truth;
-    }
-
-    /**
-     * @param bool $truth
-     * @return $this
-     */
-    public function setTruth($truth)
-    {
-        $this->truth = $truth;
-        return $this;
+        $this->point = 2;
+        $this->truth = true;
     }
 
     /**
@@ -105,6 +89,25 @@ class Proposition
     }
 
     /**
+     * @return bool
+     */
+    public function isTruth()
+    {
+        return $this->truth;
+    }
+
+    /**
+     * @param bool $truth
+     * @return $this
+     */
+    public function setTruth($truth)
+    {
+        $this->truth = $truth;
+        return $this;
+    }
+
+
+    /**
      * @return int
      */
     public function getPoint()
@@ -125,47 +128,19 @@ class Proposition
     /**
      * @return Collection
      */
-    public function getQuestions()
+    public function getQuestion()
     {
-        return $this->questions;
+        return $this->question;
     }
 
     /**
      * @param Question $question
      * @return $this
      */
-    public function addQuestion(Question $question)
+    public function setQuestion(Question $question)
     {
-        if (false === $this->questions->contains($question)) {
-            $this->questions->add($question);
-        }
+        $this->question = $question;
         return $this;
     }
-
-    /**
-     * @param Collection $questions
-     * @return $this
-     */
-    public function setQuestions(Collection $questions)
-    {
-        $this->questions = new ArrayCollection();
-        foreach ($questions as $question){
-            $this->addQuestion($question);
-        }
-        return $this;
-    }
-
-    /**
-     * @param Question $question
-     * @return $this
-     */
-    public function removeQuestion(Question $question){
-        if (true === $this->questions->contains($question))
-        {
-            $this->questions->removeElement($question);
-        }
-        return $this;
-    }
-
 
 }

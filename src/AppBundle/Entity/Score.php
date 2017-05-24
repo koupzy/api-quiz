@@ -1,24 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: yannick
- * Date: 23/05/17
- * Time: 14:24
- */
-
 namespace AppBundle\Entity;
-use Doctrine\Common\Collections\Collection;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Score
  * @package AppBundle\Entity
+ * @author Peflyn Ange Paterson
  * @ORM\Table()
  * @ORM\Entity()
  */
 class Score
 {
-
     /**
      * @var Quiz
      * @ORM\ManyToOne(targetEntity="Quiz", inversedBy="scores")
@@ -28,18 +21,26 @@ class Score
     private $quiz;
 
     /**
-     * @var Question
-     * @ORM\ManyToOne(targetEntity="Question", inversedBy="scores")
+     * @ORM\Id()
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Question", inversedBy="scores")
      * @ORM\JoinColumn(name="question_id", referencedColumnName="id")
-     * @ORM\Id
+     * @var Question $question
      */
     private $question;
 
     /**
-     * @var boolean $note
      * @ORM\Column(type="boolean")
+     * @var boolean $match
      */
-    private $truth;
+    private $match;
+
+
+    public function __construct(Question $question, Quiz $quiz)
+    {
+        $this->match = false;
+        $this->question = $question;
+        $this->quiz = $quiz;
+    }
 
     /**
      * @return Quiz
@@ -74,31 +75,26 @@ class Score
     public function setQuestion($question)
     {
         $this->question = $question;
-        return $this;
     }
+
 
     /**
      * @return bool
      */
-    public function isTruth()
+
+    public function isMatch()
     {
-        return $this->truth;
+        return $this->match;
     }
 
     /**
-     * @param bool $truth
      * @return $this
+     * @param bool $match
      */
-    public function setTruth($truth)
+    public function setMatch($match)
     {
-        $this->truth = $truth;
+        $this->match = $match;
         return $this;
     }
-
-
-
-
-
-
 
 }

@@ -60,8 +60,8 @@ class Quiz
     private $note;
 
     /**
-     * @var User
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="quizs", fetch="EAGER")
+     * @var User $user
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="quizs", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="user_id",referencedColumnName="id")
      */
     private $user;
@@ -79,13 +79,12 @@ class Quiz
      */
     private $mode;
 
-
-
     public function __construct()
     {
         $this->paused == false;
         $this->finished == false;
         $this->scores == new ArrayCollection();
+
     }
 
     /**
@@ -103,9 +102,6 @@ class Quiz
     {
         $this->id = $id;
     }
-
-
-
 
     /**
      * @return \DateTime
@@ -277,12 +273,9 @@ class Quiz
      * @param Mode $mode
      * @return $this
      */
-    public function setMode($mode)
+    public function setMode(Mode $mode)
     {
         $this->mode = $mode;
-        return $this;
     }
-
-
 
 }

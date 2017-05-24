@@ -21,6 +21,7 @@ class Question
      */
     private $id;
 
+
     /**
      * @ORM\Column(type="string")
      * @var string $content
@@ -40,7 +41,7 @@ class Question
     private $multipleChoice;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="questions", fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="questions", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      * @var Category $category
      */
@@ -58,7 +59,6 @@ class Question
      */
     private $scores;
 
-
     public function __construct()
     {
         $this->multipleChoice = false;
@@ -66,6 +66,7 @@ class Question
         $this->scores = new ArrayCollection();
 
     }
+
 
     /**
      * @return integer
@@ -238,7 +239,6 @@ class Question
         return $this;
     }
 
-
     /**
      * @param Score $score
      * @return $this
@@ -248,6 +248,7 @@ class Question
         if (true === $this->scores->contains($score))
         {
             $this->scores->removeElement($score);
+
         }
         return $this;
     }
