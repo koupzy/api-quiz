@@ -48,7 +48,7 @@ class Question
     private $category;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Proposition", mappedBy="questions", fetch="EAGER")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Proposition", mappedBy="question", fetch="EAGER")
      * @var Collection $propositions
      */
     private $propositions;

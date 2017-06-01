@@ -1,4 +1,30 @@
 api_quiz_category_list:
-   path: /categories
-   defaults: {_controller: AppBundle:Category:list}
-   methods: GET
+    path: /categories
+    defaults: {_controller: AppBundle:Category:list}
+    methods: GET
+
+api_quiz_category_create:
+    path: /categories
+    defaults: {_controller: AppBundle:Category:create}
+    methods: POST
+
+api_quiz_category_read:
+    path: /categories/{id}
+    defaults: {_controller: AppBundle:Category:read}
+    methods: GET
+    requirements:
+        id: \d+
+
+api_quiz_category_update:
+    path: /categories/{id}
+    defaults: {_controller: AppBundle:Category:update}
+    methods: PUT
+    requirements:
+        id: \d+
+
+api_quiz_category_delete:
+    path: /categories/{id}
+    defaults: {_controller: AppBundle:Category:delete}
+    methods: DELETE
+    requirements:
+        id: \d+

@@ -124,9 +124,8 @@ class Proposition
     }
 
 
-
     /**
-     * @return Collection
+     * @return Question
      */
     public function getQuestion()
     {

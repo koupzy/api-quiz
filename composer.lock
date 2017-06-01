@@ -4,9 +4,63 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9daec166162bd4d8c6b1d44feffad1bd",
-    "content-hash": "91edcc99e86b238c3ca79a0649d6c55d",
+    "hash": "57ee62fdbf525dae49e85c28b68f8447",
+    "content-hash": "f0a6aa677df233d740a19ae0ae0f84c1",
     "packages": [
+        {
+            "name": "coka/pagination-bundle",
+            "version": "1.2.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/CedrickOka/oka-pagination.git",
+                "reference": "6b88ae35bbf01bdc5f50898b2192d1f8fd761d43"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/CedrickOka/oka-pagination/zipball/6b88ae35bbf01bdc5f50898b2192d1f8fd761d43",
+                "reference": "6b88ae35bbf01bdc5f50898b2192d1f8fd761d43",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/doctrine-bundle": "~1.4",
+                "doctrine/orm": "^2.4.8",
+                "php": "^5.3.9 || ^7.0",
+                "symfony/symfony": "^2.8 || ^3.0"
+            },
+            "suggest": {
+                "doctrine/mongodb-odm": "~1.0",
+                "doctrine/mongodb-odm-bundle": "~3.0",
+                "twig/extensions": "1.0.*"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Oka\\PaginationBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Cedrick Oka",
+                    "email": "cedrickoka@fermentuse.com"
+                }
+            ],
+            "description": "Symfony Oka pagination bundle",
+            "homepage": "https://github.com/CedrickOka/oka-pagination",
+            "keywords": [
+                "doctrine2",
+                "pagination"
+            ],
+            "time": "2017-06-01 09:24:57"
+        },
         {
             "name": "composer/ca-bundle",
             "version": "1.0.7",
@@ -2175,16 +2229,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v3.2.8",
+            "version": "v3.2.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "85959c2abbe4d2f050f950f39c9c3cf83819f3df"
+                "reference": "78c08f2faa42210db4fe6f4ece73891ca546a9a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/85959c2abbe4d2f050f950f39c9c3cf83819f3df",
-                "reference": "85959c2abbe4d2f050f950f39c9c3cf83819f3df",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/78c08f2faa42210db4fe6f4ece73891ca546a9a0",
+                "reference": "78c08f2faa42210db4fe6f4ece73891ca546a9a0",
                 "shasum": ""
             },
             "require": {
@@ -2315,7 +2369,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-05-01 17:47:03"
+            "time": "2017-05-29 19:32:17"
         },
         {
             "name": "twig/twig",
@@ -2438,23 +2492,23 @@
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v3.2.8",
+            "version": "v3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
-                "reference": "00916603c524b8048906de460b7ea0dfa1651281"
+                "reference": "1a09124ea479cca85fc66a6f21e59aa952ebed1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/00916603c524b8048906de460b7ea0dfa1651281",
-                "reference": "00916603c524b8048906de460b7ea0dfa1651281",
+                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/1a09124ea479cca85fc66a6f21e59aa952ebed1f",
+                "reference": "1a09124ea479cca85fc66a6f21e59aa952ebed1f",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "conflict": {
-                "phpunit/phpunit": ">=6.0"
+                "phpunit/phpunit": "<4.8.35|<5.4.3,>=5.0"
             },
             "suggest": {
                 "ext-zip": "Zip support is required when using bin/simple-phpunit",
@@ -2466,7 +2520,7 @@
             "type": "symfony-bridge",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.2-dev"
+                    "dev-master": "3.3-dev"
                 }
             },
             "autoload": {
@@ -2496,7 +2550,7 @@
             ],
             "description": "Symfony PHPUnit Bridge",
             "homepage": "https://symfony.com",
-            "time": "2017-04-12 14:13:17"
+            "time": "2017-05-28 11:10:04"
         }
     ],
     "aliases": [],

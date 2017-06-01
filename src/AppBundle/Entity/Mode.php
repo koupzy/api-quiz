@@ -10,11 +10,13 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 /**
  * Class Mode
- * @package AppBundle\Entity
- * @ORM\Table()
  * @ORM\Entity()
+ * @ORM\Table(name="mode")
+ * @UniqueEntity(fields="label")
  * @author joel
  */
 class Mode
@@ -29,7 +31,7 @@ class Mode
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique=true)
      */
     private $label;
 
@@ -64,11 +66,13 @@ class Mode
     }
 
     /**
-     * @param string $label
+     * @param $label
+     * @return $this
      */
     public function setLabel($label)
     {
         $this->label = $label;
+        return $this;
     }
 
     /**

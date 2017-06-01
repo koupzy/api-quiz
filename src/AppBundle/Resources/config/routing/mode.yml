@@ -1,0 +1,30 @@
+api_quiz_mode_list:
+    path: /modes
+    defaults: {_controller: AppBundle:Mode:list}
+    methods: GET
+
+api_quiz_mode_create:
+    path: /modes
+    defaults: {_controller: AppBundle:Mode:create}
+    methods: POST
+
+api_quiz_mode_delete:
+    path: /modes/{id}
+    defaults: {_controller: AppBundle:Mode:delete}
+    methods: DELETE
+    requirements:
+        id: \d+
+
+api_quiz_mode_read:
+    path: /modes/{id}
+    defaults: {_controller: AppBundle:Mode:read}
+    methods: GET
+    requirements:
+        id: \d+
+
+api_quiz_mode_update:
+    path: /modes/{id}
+    defaults: {_controller: AppBundle:Mode:update}
+    methods: PUT
+    requirements:
+        id: \d+

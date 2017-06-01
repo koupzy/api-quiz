@@ -4,11 +4,12 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity()
  * @ORM\Table(name="category")
- *
+ * @UniqueEntity(fields="name")
  * @author Ange Paterson
  */
 class Category
