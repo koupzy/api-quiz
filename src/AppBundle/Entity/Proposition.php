@@ -3,11 +3,12 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="proposition")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PropositionRepository")
  *
  * @author Ange Paterson
  */
@@ -140,6 +141,16 @@ class Proposition
     public function setQuestion(Question $question)
     {
         $this->question = $question;
+        return $this;
+    }
+
+    /**
+     * @param Question $question
+     * @return $this
+     */
+    public function removeQuestion()
+    {
+        $this->question = null;
         return $this;
     }
 

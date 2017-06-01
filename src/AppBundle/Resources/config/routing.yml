@@ -1,2 +1,8 @@
 api_quiz_category:
     resource: '@AppBundle/Resources/config/routing/category.yml'
+
+api_quiz_question:
+    resource: '@AppBundle/Resources/config/routing/question.yml'
+
+api_quiz_propositon:
+    resource: '@AppBundle/Resources/config/routing/proposition.yml'
