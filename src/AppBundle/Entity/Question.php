@@ -3,11 +3,13 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Table(name="question")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\QuestionRepository")
  *
  * @author Ange Paterson
  */
@@ -17,6 +19,7 @@ class Question
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer", options={"unsigned": true})
+     * @JMS\Type("integer")
      * @var integer $id
      */
     private $id;
@@ -24,6 +27,7 @@ class Question
 
     /**
      * @ORM\Column(type="string")
+     * @JMS\Type("string")
      * @var string $content
      */
     private $content;
@@ -31,12 +35,15 @@ class Question
     /**
      * @var int $duration
      * @ORM\Column(type="smallint", options={"unsigned": true})
+     * @JMS\Type("integer")
      */
     private $duration;
 
     /**
      * @ORM\Column(type="boolean")
      * @var boolean $multipleChoice
+     * @JMS\Type("boolean")
+     * @JMS\SerializedName("multipleChoice")
      */
     private $multipleChoice;
 
@@ -44,18 +51,21 @@ class Question
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="questions", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      * @var Category $category
+     * @JMS\Type("AppBundle\Entity\Category")
      */
     private $category;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Proposition", mappedBy="question", fetch="EAGER")
      * @var Collection $propositions
+     * @JMS\Type("ArrayCollection<AppBundle\Entity\Proposition>")
      */
     private $propositions;
 
     /**
      * @var Collection
      * @ORM\OneToMany(targetEntity="Score", mappedBy="question")
+     * @JMS\Type("ArrayCollection<AppBundle\Entity\Score>")
      */
     private $scores;
 
@@ -66,7 +76,6 @@ class Question
         $this->scores = new ArrayCollection();
 
     }
-
 
     /**
      * @return integer
@@ -172,9 +181,10 @@ class Question
      */
     public function addProposition(Proposition $proposition)
     {
-        if (false=== $this->propositions->contains($proposition))
+        if (false === $this->propositions->contains($proposition))
         {
             $this->propositions->add($proposition);
+            $proposition->setQuestion($this);
         }
         return $this;
     }
@@ -200,6 +210,7 @@ class Question
     {
         if (true === $this->propositions->contains($proposition)){
             $this->propositions->removeElement($proposition);
+            $proposition->removeQuestion();
         }
         return $this;
     }

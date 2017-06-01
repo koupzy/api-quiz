@@ -3,3 +3,9 @@ api_quiz_category:
 
 api_quiz_mode:
     resource: '@AppBundle/Resources/config/routing/mode.yml'
+
+api_quiz_question:
+    resource: '@AppBundle/Resources/config/routing/question.yml'
+
+api_quiz_propositon:
+    resource: '@AppBundle/Resources/config/routing/proposition.yml'

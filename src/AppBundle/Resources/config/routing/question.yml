@@ -1,0 +1,30 @@
+api_quiz_question_list:
+    path: /questions
+    defaults: {_controller: AppBundle:Question:list}
+    methods: GET
+
+api_quiz_question_read:
+    path: /questions/{id}
+    defaults: {_controller: AppBundle:Question:read}
+    requirements:
+        id: \d+
+    methods: GET
+
+api_quiz_question_create:
+    path: /questions
+    defaults: {_controller: AppBundle:Question:create}
+    methods: POST
+
+api_quiz_question_update:
+    path: /questions/{id}
+    defaults: {_controller: AppBundle:Question:update}
+    requirements:
+        id: \d+
+    methods: PUT
+
+api_quiz_question_delete:
+    path: /questions/{id}
+    defaults: {_controller: AppBundle:Question:delete}
+    requirements:
+        id: \d+
+    methods: DELETE

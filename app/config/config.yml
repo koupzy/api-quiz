@@ -19,6 +19,8 @@ framework:
     csrf_protection: ~
     validation: { enable_annotations: true }
     #serializer: { enable_annotations: true }
+    serializer:
+        enabled: false
     templating:
         engines: ['twig']
     default_locale: '%locale%'
@@ -69,6 +71,7 @@ swiftmailer:
     password: '%mailer_password%'
     spool: { type: memory }
 
+# Oka pagination
 oka_pagination:
     db_driver: orm
     pagination_managers:
@@ -89,6 +92,7 @@ oka_pagination:
                 delimiter: ','
                 attributes_availables: ['name']
 
+
         mode:
             db_driver: orm
             model_manager_name: default
@@ -105,3 +109,38 @@ oka_pagination:
             sort:
                 delimiter: ','
                 attributes_availables: ['label']
+
+        question:
+            db_driver: orm
+            model_manager_name: default
+            class: AppBundle\Entity\Question
+            item_per_page: 10
+            max_page_number: 4000
+            template: OkaPaginationBundle:Pagination:paginate.html.twig
+            request:
+                query_map:
+                    page: page
+                    item_per_page: item_per_page
+                    sort: sort
+                    desc: desc
+            sort:
+                delimiter: ','
+                attributes_availables: ['content', 'duration']
+
+
+        proposition:
+            db_driver: orm
+            model_manager_name: default
+            class: AppBundle\Entity\Proposition
+            item_per_page: 10
+            max_page_number: 4000
+            template: OkaPaginationBundle:Pagination:paginate.html.twig
+            request:
+                query_map:
+                    page: page
+                    item_per_page: item_per_page
+                    sort: sort
+                    desc: desc
+            sort:
+                delimiter: ','
+                attributes_availables: ['content', 'truth']
