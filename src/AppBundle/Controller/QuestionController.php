@@ -5,11 +5,7 @@
  * Date: 24/05/17
  * Time: 09:20
  */
-
 namespace AppBundle\Controller;
-
-
-
 
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Proposition;
@@ -84,14 +80,13 @@ class QuestionController extends Controller
         /** @var EntityManager $em */
         $em = $this->get('doctrine.orm.entity_manager');
         $validator = $this->get('validator');
-
         $jsonData = json_decode($request->getContent(),true);
 
         /** @var ConstraintViolationListInterface $errors */
         $errors = $validator->validate($jsonData, new Assert\Collection([
             'content'=> new Assert\Required([new Assert\NotBlank(), new Assert\NotNull()]),
             'duration' => new Assert\Optional([new Assert\Type(['type' => 'integer'])]),
-            'multipleChoice' => new Assert\Optional(),
+            'multipleChoice' => new Assert\Optional([new Assert\Type(['type' => 'boolean'])]),
             'category' => new Assert\Optional([
                 new Assert\Collection([
                     'id' => new Assert\Required([new Assert\Type(['type'=>'integer'])])
@@ -120,6 +115,10 @@ class QuestionController extends Controller
                 $question->setDuration($jsonData['duration']);
             }
 
+            if (isset($jsonData['multipleChoice'])) {
+                $question->setMultipleChoice($jsonData['multipleChoice']);
+            }
+
             if (isset($jsonData['category'])) {
                 if (!$category = $em->getRepository(Category::class)->find($jsonData['category']['id'])){
                     return new JsonResponse(["message" =>"category not found"],404);
@@ -127,7 +126,7 @@ class QuestionController extends Controller
                 $question->setCategory($category);
             }
 
-            if (isset($jsonData['propositions'])){
+            if (isset($jsonData['propositions'])) {
                 foreach ($jsonData['propositions'] as $key => $item) {
                     $proposition = new Proposition();
                     $proposition->setContent($item['content']);
@@ -193,10 +192,11 @@ class QuestionController extends Controller
 
         $jsonData = json_decode($request->getContent(),true);
 
+        /** @var ConstraintViolationListInterface $errors */
         $errors = $this->get('validator')->validate($jsonData, new Assert\Collection([
             'content' => new Assert\Optional([new Assert\NotBlank(), new Assert\NotNull()]),
             'duration' => new Assert\Optional(new Assert\Type(['type' => 'integer'])),
-            'multipleChoice' => new Assert\Optional(new Assert\Type(['type'=>'boolean'])),
+            'multipleChoice' => new Assert\Optional([new Assert\Type(['type' => 'boolean'])]),
             'category' => new Assert\Optional([
                 new Assert\Collection([
                     'id' => new Assert\Required([new Assert\Type(['type' => 'integer'])])
@@ -215,6 +215,8 @@ class QuestionController extends Controller
                 ])
             ])
         ]));
+
+
 
         if ($errors->count() === 0) {
             if (isset($jsonData['content'])){
@@ -266,13 +268,12 @@ class QuestionController extends Controller
                     if (isset($item['point'])){
                         $proposition->setPoint($item['point']);
                     }
-
                     $question->addProposition($proposition);
                 }
-                $em->flush();
-
-                return new JsonResponse($this->get('jms_serializer')->toArray($question),200);
             }
+            $em->flush();
+
+            return new JsonResponse($this->get('jms_serializer')->toArray($question),200);
         }
         return new JsonResponse(["message" =>"request not valid"],400);
     }
