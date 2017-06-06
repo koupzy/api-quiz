@@ -144,7 +144,6 @@ class QuestionController extends Controller
                 }
             }
 
-
             $em->persist($question);
             $em->flush();
 
@@ -152,8 +151,6 @@ class QuestionController extends Controller
         } else {
             return new JsonResponse(["message" =>"request not valid", 'property' => $errors->get(0)->getPropertyPath(),  'error' => $errors->get(0)->getMessage()],400);
         }
-
-
     }
 
     /**
