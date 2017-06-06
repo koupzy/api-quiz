@@ -66,7 +66,7 @@ class PropositionController extends Controller
         $error = $validator->validate($jsonData,new Assert\Collection([
             'content' => new Assert\Required([new Assert\NotBlank(),
                 new Assert\NotNull(),
-                new Assert\Type(['type'=>'integer'])
+                new Assert\Type(['type'=>'string'])
             ]),
             'truth'   => new Assert\Optional(),
             'point'   => new Assert\Optional([new Assert\Type(['type'=>'integer'])]),
