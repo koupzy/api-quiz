@@ -2,14 +2,15 @@
 namespace Tests\AppBundle\Controller;
 
 use Symfony\Component\BrowserKit\Response;
+use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
- * Class CategoryControllerTest
+ * Class ModeControllerTest
  * @package Tests\AppBundle\Controller
  * @author Ange Paterson
  */
-class CategoryControllerTest extends TemplateTest
+class ModeControllerTest extends TemplateTest
 {
 
     public function setUp()
@@ -17,15 +18,19 @@ class CategoryControllerTest extends TemplateTest
         parent::setUp();
     }
 
+
     function testCreate()
     {
+        /** @var Crawler $crawler */
         $crawler = $this->client->request(
             'POST',
-            $this->router->generate('api_quiz_category_create', [], UrlGeneratorInterface::ABSOLUTE_PATH),
+            $this->router->generate('api_quiz_mode_create', [], UrlGeneratorInterface::ABSOLUTE_PATH),
             [],
             [],
-            ['HTTP_Content-Type' => 'application/json'],
-            '{"name":"VEONE"}'
+            [
+                'HTTP_Content-Type' => 'application/json'
+            ],
+            '{"label":"Mode00"}'
         );
 
         /** @var Response $response */
@@ -33,77 +38,81 @@ class CategoryControllerTest extends TemplateTest
         $content = json_decode($response->getContent(), true);
 
         $this->assertEquals(201, $response->getStatusCode());
-        $this->assertEquals('VEONE', $content['name']);
+        $this->assertEquals('Mode00', $content['label']);
 
         return $content;
     }
 
     /**
-     * @param array $category
+     * @param array $mode
      * @return mixed
      * @depends testCreate
      */
-    function testRead(array $category)
+    function testRead(array $mode)
     {
         $crawler = $this->client->request(
             'GET',
-            $this->router->generate('api_quiz_category_read', ['id' => $category['id']], UrlGeneratorInterface::ABSOLUTE_PATH),
+            $this->router->generate('api_quiz_mode_read', ['id'=>$mode['id']], UrlGeneratorInterface::ABSOLUTE_PATH),
             [],
             [],
             []
         );
 
+        /** @var Response $response */
         $response = $this->client->getResponse();
         $content = json_decode($response->getContent(), true);
 
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals('VEONE', $content['name']);
+        $this->assertEquals('Mode00', $content['label']);
 
         return $content;
     }
 
     /**
-     * @param array $category
+     * @param array $mode
      * @depends testRead
+     * @return mixed
      */
-    function testUpdate(array $category)
+    function testUpdate(array $mode)
     {
         $crawler = $this->client->request(
             'PUT',
-            $this->router->generate('api_quiz_category_update', ['id' => $category['id']], UrlGeneratorInterface::ABSOLUTE_PATH),
+            $this->router->generate('api_quiz_mode_update', ['id'=>$mode['id']], UrlGeneratorInterface::ABSOLUTE_PATH),
             [],
             [],
-            ['HTTP_Content-Type' => 'application/json'],
-            '{"name":"VEONE"}'
+            [
+                'HTTP_Content-Type' => 'application/json'
+            ],
+            '{"label":"Mode00"}'
         );
 
+        /** @var Response $response */
         $response = $this->client->getResponse();
         $content = json_decode($response->getContent(), true);
 
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals('VEONE', $content['name']);
+        $this->assertEquals('Mode00', $content['label']);
 
         return $content;
     }
 
     /**
-     * @param array $category
+     * @param array $mode
      * @depends testUpdate
      */
-    function testDelete(array $category)
+    function testDelete(array $mode)
     {
         $crawler = $this->client->request(
-            'DELETE',
-            $this->router->generate('api_quiz_category_delete', ['id' => $category['id']], UrlGeneratorInterface::ABSOLUTE_PATH),
-            [],
-            [],
-            []
+          'DELETE',
+          $this->router->generate('api_quiz_mode_delete', ['id' => $mode['id']], UrlGeneratorInterface::ABSOLUTE_PATH),
+          [],
+          [],
+          ['HTTP_Content-Type' => 'application/json']
         );
 
         $response = $this->client->getResponse();
         $content = json_decode($response->getContent(), true);
+
         $this->assertEquals(204, $response->getStatusCode());
-       // $this->assertEquals('VEONE', $content['name']);
-        //'HTTP_Content-Type' => 'application/json'
     }
 }
