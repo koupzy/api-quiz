@@ -68,7 +68,7 @@ class PropositionController extends Controller
                 new Assert\NotNull(),
                 new Assert\Type(['type'=>'string'])
             ]),
-            'truth'   => new Assert\Optional(),
+            'truth'   => new Assert\Optional(new Assert\Type(['type'=>'boolean'])),
             'point'   => new Assert\Optional([new Assert\Type(['type'=>'integer'])]),
             'question'=> new Assert\Optional([new Assert\Collection([
                 'id' => new Assert\Required([new Assert\Type(['type'=>'integer'])])
@@ -198,7 +198,7 @@ class PropositionController extends Controller
         }
         $em->remove($proposition);
         $em->flush();
-        return new JsonResponse(null,200);
+        return new JsonResponse(null,204);
     }
 
 }

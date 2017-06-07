@@ -32,6 +32,7 @@ class Question
      */
     private $content;
 
+
     /**
      * @var int $duration
      * @ORM\Column(type="smallint", options={"unsigned": true})
