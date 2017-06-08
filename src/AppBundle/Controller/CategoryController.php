@@ -184,7 +184,7 @@ class CategoryController extends Controller
             return new JsonResponse(['message' => 'Category not found'], 404);
         }
 
-            $em->getRepository(Question::class)->deleteBy(['category' => $category->getId()]);
+            $em->getRepository(Question::class)->detachAllChild($category);
             $em->remove($category);
             $em->flush();
 

@@ -17,9 +17,9 @@ class QuestionRepository extends EntityRepository
     /**
      * @param Category $category
      */
-    public function removeAllChild(Category $category){
+    public function detachAllChild(Category $category){
         $this->_em->createQuery(sprintf('UPDATE %s q SET q.category = NULL WHERE q.category = :id', $this->_entityName))
-        ->execute(['id' => $category->getId()]);
+                  ->execute(['id' => $category->getId()]);
     }
 
     /**
