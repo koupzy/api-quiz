@@ -70,6 +70,13 @@ class Question
      */
     private $scores;
 
+    /**
+     * @var Level $level
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Level", inversedBy="questions", fetch="EXTRA_LAZY")
+     * @ORM\JoinColumn(name="level_id", referencedColumnName="id")
+     */
+    private $level;
+
     public function __construct()
     {
         $this->multipleChoice = false;
@@ -262,6 +269,24 @@ class Question
             $this->scores->removeElement($score);
 
         }
+        return $this;
+    }
+
+    /**
+     * @return Level
+     */
+    public function getLevel()
+    {
+        return $this->level;
+    }
+
+    /**
+     * @param Level $level
+     * @return $this
+     */
+    public function setLevel(Level $level)
+    {
+        $this->level = $level;
         return $this;
     }
 

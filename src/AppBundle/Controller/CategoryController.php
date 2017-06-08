@@ -1,7 +1,9 @@
 <?php
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Question;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Oka\PaginationBundle\Exception\SortAttributeNotAvailableException;
 use Oka\PaginationBundle\Service\PaginationManager;
 use Oka\PaginationBundle\Util\PaginationResultSet;
@@ -173,14 +175,16 @@ class CategoryController extends Controller
      */
     public function deleteAction($id)
     {
+        /** @var EntityManagerInterface $em */
         $em = $this->get('doctrine.orm.entity_manager');
         $category = $em->getRepository('AppBundle:Category')->find($id);
 
-        if (null === $category)
+        if ($category === null)
         {
             return new JsonResponse(['message' => 'Category not found'], 404);
         }
 
+            $em->getRepository(Question::class)->detachAllChild($category);
             $em->remove($category);
             $em->flush();
 
