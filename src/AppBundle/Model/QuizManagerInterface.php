@@ -1,5 +1,7 @@
 <?php
 namespace AppBundle\Model;
+use AppBundle\Entity\Quiz;
+use AppBundle\Entity\User;
 
 /**
  * Interface QuizManagerInterface
@@ -9,13 +11,15 @@ interface QuizManagerInterface{
 
     public function create();
 
-    public function start();
+    public function start(Quiz $quiz);
 
-    public function stop();
+    public function delivery(Quiz $quiz);
 
-    public function pause();
+    public function stop(Quiz $quiz);
 
-    public function resume();
+    public function pause(Quiz $quiz);
+
+    public function resume(Quiz $quiz);
 
     public function showTime();
 

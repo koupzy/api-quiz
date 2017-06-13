@@ -10,6 +10,7 @@ namespace AppBundle\Repository;
 
 
 use AppBundle\Entity\Category;
+use AppBundle\Entity\Quiz;
 use Doctrine\ORM\EntityRepository;
 
 class QuestionRepository extends EntityRepository
@@ -43,6 +44,16 @@ class QuestionRepository extends EntityRepository
         }
 
         $query->setDQL(sprintf($dql, $this->_entityName))->execute();
+    }
+
+    public function findByQuiz(Quiz $quiz){
+
+        $query = $this->_em->createQuery(sprintf('SELECT q FROM %s q WHERE q.category = :category AND q.level = :level AND ORDER BY RAND()',$this->_entityName))
+                ->setParameter('category' , $quiz->getCategory()->getId())
+                ->setParameter('level' , $quiz->getLevel()->getId())
+                ->setMaxResults($quiz->getNumber());
+
+        return $query->getResult();
     }
 
 

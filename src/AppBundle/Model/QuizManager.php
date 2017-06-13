@@ -1,14 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: peflyn
- * Date: 08/06/17
- * Time: 10:01
- */
-
 namespace AppBundle\Model;
 
+use AppBundle\Entity\Question;
 use AppBundle\Entity\Quiz;
+use AppBundle\Entity\Score;
 
 /**
  * Class QuizManager
@@ -22,14 +17,43 @@ abstract class QuizManager implements QuizManagerInterface
         $quiz = new Quiz();
     }
 
-    public function start()
+    public function start(Quiz $quiz)
     {
-        // TODO: Implement start() method.
+        $em = $this->getDoctrine()->getManager();
+        $questions = $em->getRepository(Question::class)->findByQuiz($quiz);
+        $sores = [];
+
+        foreach ($questions as $question) {
+            $score = new Score($question, $quiz);
+            $sores[] = $score;
+            $em->persist($score);
+        }
+        unset($score);
+
+        $em->flush($sores);
     }
 
-    public function pause()
+    public function delivery(Quiz $quiz)
     {
-        // TODO: Implement pause() method.
+        $criteria = array('quiz_id' => $quiz->getId(),'delivered'=>false);
+        $em = $this->getDoctrine()->getManager();
+        $score = $em->getRepository(Score::class)->findOneBy($criteria);
+        return $score->getQuestion();
+    }
+
+    public function pause(Quiz $quiz)
+    {
+        $quiz->setPaused(true);
+    }
+
+    public function stop(Quiz $quiz)
+    {
+        $quiz->setFinished(true);
+    }
+
+    public function resume(Quiz $quiz)
+    {
+        $quiz->setPaused(false);
     }
 
 
