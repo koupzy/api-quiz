@@ -56,5 +56,15 @@ class QuestionRepository extends EntityRepository
         return $query->getResult();
     }
 
+    public function findOneByScore(Quiz $quiz) {
+
+        $query = $this->_em->createQuery(sprintf('SELECT q FROM %s q JOIN q.scores s JOIN s.quiz qu WHERE qu.id = :id AND s.delivered = FALSE', $this->_entityName))
+            ->setParameter('id',$quiz->getId())
+            ->setFirstResult(0)
+            ->setMaxResults(1);
+
+        return $query->getOneOrNullResult();
+    }
+
 
 }

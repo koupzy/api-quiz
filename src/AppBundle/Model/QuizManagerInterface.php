@@ -1,5 +1,8 @@
 <?php
 namespace AppBundle\Model;
+use AppBundle\Entity\Category;
+use AppBundle\Entity\Level;
+use AppBundle\Entity\Mode;
 use AppBundle\Entity\Quiz;
 use AppBundle\Entity\User;
 
@@ -9,7 +12,7 @@ use AppBundle\Entity\User;
  */
 interface QuizManagerInterface{
 
-    public function create();
+    public function create(User $user,Category $category = null,integer $nombre = null,Level $level = null,Mode $mode = null);
 
     public function start(Quiz $quiz);
 

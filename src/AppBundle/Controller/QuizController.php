@@ -9,6 +9,7 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Model\QuizManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -17,7 +18,8 @@ class QuizController extends Controller
 
     public function createQuizAction()
     {
-
+        /** @var QuizManagerInterface $quizManager */
+        $quizManager = $this->get('app.default_quiz_manager');
     }
 
 }

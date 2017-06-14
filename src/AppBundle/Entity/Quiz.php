@@ -105,10 +105,11 @@ class Quiz
 
     public function __construct()
     {
-        $this->paused == false;
-        $this->finished == false;
-        $this->number == 20;
-        $this->scores == new ArrayCollection();
+        $this->createdAt = new \DateTime("now");
+        $this->paused = false;
+        $this->finished = false;
+        $this->number = 20;
+        $this->scores = new ArrayCollection();
 
     }
 
