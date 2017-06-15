@@ -8,7 +8,6 @@
 
 namespace AppBundle\Repository;
 
-
 use AppBundle\Entity\Question;
 use Doctrine\ORM\EntityRepository;
 

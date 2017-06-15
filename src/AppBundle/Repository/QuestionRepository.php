@@ -8,8 +8,8 @@
 
 namespace AppBundle\Repository;
 
-
 use AppBundle\Entity\Category;
+use AppBundle\Entity\Level;
 use AppBundle\Entity\Quiz;
 use Doctrine\ORM\EntityRepository;
 
@@ -46,17 +46,26 @@ class QuestionRepository extends EntityRepository
         $query->setDQL(sprintf($dql, $this->_entityName))->execute();
     }
 
-    public function findByQuiz(Quiz $quiz){
+    /**
+     * @param int $number
+     * @param Category|null $category
+     * @param Level|null $level
+     * @return array
+     */
+    public function findForQuiz(int $number, Category $category = null, Level $level = null) {
+        $criteria = [];
 
-        $query = $this->_em->createQuery(sprintf('SELECT q FROM %s q WHERE q.category = :category AND q.level = :level AND ORDER BY RAND()',$this->_entityName))
-                ->setParameter('category' , $quiz->getCategory()->getId())
-                ->setParameter('level' , $quiz->getLevel()->getId())
-                ->setMaxResults($quiz->getNumber());
+        if ($category !== null) {
+            $criteria['category'] = $category->getId();
+        }
+        if ($level !== null) {
+            $criteria['level'] = $level->getId();
+        }
 
-        return $query->getResult();
+        return $this->findBy($criteria, [], $number);
     }
 
-    public function findOneByScore(Quiz $quiz) {
+    public function findOneByQuiz(Quiz $quiz) {
 
         $query = $this->_em->createQuery(sprintf('SELECT q FROM %s q JOIN q.scores s JOIN s.quiz qu WHERE qu.id = :id AND s.delivered = FALSE', $this->_entityName))
             ->setParameter('id',$quiz->getId())
@@ -65,6 +74,5 @@ class QuestionRepository extends EntityRepository
 
         return $query->getOneOrNullResult();
     }
-
 
 }

@@ -12,7 +12,6 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * @ORM\Table(name="question")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\QuestionRepository")
- *
  * @author Ange Paterson
  */
 class Question

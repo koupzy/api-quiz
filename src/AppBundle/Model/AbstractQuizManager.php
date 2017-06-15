@@ -58,8 +58,10 @@ abstract class AbstractQuizManager implements QuizManagerInterface
 
     public function start(Quiz $quiz)
     {
+
+        /** @var EntityManagerInterface $em */
         $em = $this->getDoctrine()->getManager();
-        $questions = $em->getRepository(Question::class)->findByQuiz($quiz);
+        $questions = $em->getRepository(Question::class)->findForQuiz($quiz->getNumber(),$quiz->getCategory(),$quiz->getLevel());
         $sores = [];
 
         foreach ($questions as $question) {

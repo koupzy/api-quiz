@@ -35,8 +35,8 @@ class Category
     private $questions;
 
     /**
-     * @var\Collection $quizs
      * @ORM\OneToMany(targetEntity="Quiz", mappedBy="category", fetch="EXTRA_LAZY")
+     * @var Collection $quizs
      */
     private $quizs;
 
