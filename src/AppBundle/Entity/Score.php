@@ -29,6 +29,12 @@ class Score
     private $question;
 
     /**
+     * @var boolean $delivered
+     * @ORM\Column(type="boolean")
+     */
+    private $delivered;
+
+    /**
      * @ORM\Column(type="boolean")
      * @var boolean $match
      */
@@ -38,6 +44,7 @@ class Score
     public function __construct(Question $question, Quiz $quiz)
     {
         $this->match = false;
+        $this->delivered = false;
         $this->question = $question;
         $this->quiz = $quiz;
     }
@@ -76,6 +83,23 @@ class Score
     {
         $this->question = $question;
     }
+
+    /**
+     * @return boolean
+     */
+    public function isDelivered()
+    {
+        return $this->delivered;
+    }
+
+    /**
+     * @param boolean $delivered
+     */
+    public function setDelivered($delivered)
+    {
+        $this->delivered = $delivered;
+    }
+
 
 
     /**

@@ -2,9 +2,10 @@
 namespace AppBundle\Model;
 
 use AppBundle\Entity\Category;
+use AppBundle\Entity\Level;
 use AppBundle\Entity\Mode;
+use AppBundle\Entity\Quiz;
 use AppBundle\Entity\User;
-use Symfony\Component\BrowserKit\Request;
 
 /**
  * Interface QuizManagerInterface
@@ -12,15 +13,19 @@ use Symfony\Component\BrowserKit\Request;
  */
 interface QuizManagerInterface{
 
-    public function create(Request $request, User $user, Mode $mode, Category $category);
 
-    public function start();
+    public function create(User $user,Category $category = null,integer $nombre = null,Level $level = null,Mode $mode = null);
 
-    public function stop();
 
-    public function pause();
+    public function start(Quiz $quiz);
 
-    public function resume();
+    public function delivery(Quiz $quiz);
+
+    public function stop(Quiz $quiz);
+
+    public function pause(Quiz $quiz);
+
+    public function resume(Quiz $quiz);
 
     public function showTime();
 

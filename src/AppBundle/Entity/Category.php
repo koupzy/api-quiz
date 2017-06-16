@@ -34,6 +34,12 @@ class Category
      */
     private $questions;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Quiz", mappedBy="category", fetch="EXTRA_LAZY")
+     * @var Collection $quizs
+     */
+    private $quizs;
+
     public function __construct()
     {
         $this->questions = new ArrayCollection();
@@ -119,4 +125,49 @@ class Category
         }
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getQuizs()
+    {
+        return $this->quizs;
+    }
+
+    /**
+     * @param Quiz $quiz
+     * @return $this
+     */
+    public function addQuizs(Quiz $quiz) {
+        if (false === $this->quizs->contains($quiz)) {
+            $this->quizs->add($quiz);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Collection $quizs
+     * @return $this
+     */
+    public function setQuizs(Collection $quizs)
+    {
+        $this->quizs = new ArrayCollection();
+        foreach ($quizs as $quiz) {
+            $this->addQuizs($quiz);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Quiz $quiz
+     * @return $this
+     */
+    public function removeQuizs(Quiz $quiz) {
+        if (true === $this->quizs->contains($quiz)) {
+            $this->quizs->removeElement($quiz);
+        }
+        return $this;
+    }
+
+
 }

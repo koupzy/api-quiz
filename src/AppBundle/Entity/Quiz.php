@@ -7,6 +7,8 @@
  */
 
 namespace AppBundle\Entity;
+use AppBundle\Model\Categorizable;
+use AppBundle\Model\levelable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -21,6 +23,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Quiz
 {
+    use Categorizable,levelable;
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -60,6 +63,13 @@ class Quiz
     private $note;
 
     /**
+     * @var integer $number
+     * @ORM\Column(type="integer")
+     */
+    private $number;
+
+
+    /**
      * @var User $user
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="quizs", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="user_id",referencedColumnName="id")
@@ -73,17 +83,33 @@ class Quiz
     private $scores;
 
     /**
+     * @var Category $category
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="quizs")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
+    private $category;
+
+    /**
      * @var Mode
      * @ORM\ManyToOne(targetEntity="Mode", inversedBy="quizs")
      * @ORM\JoinColumn(name="mode_id", referencedColumnName="id")
      */
     private $mode;
 
+    /**
+     * @var Level $level
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Level", inversedBy="questions", fetch="EXTRA_LAZY")
+     * @ORM\JoinColumn(name="level_id", referencedColumnName="id")
+     */
+    private $level;
+
     public function __construct()
     {
-        $this->paused == false;
-        $this->finished == false;
-        $this->scores == new ArrayCollection();
+        $this->createdAt = new \DateTime("now");
+        $this->paused = false;
+        $this->finished = false;
+        $this->number = 20;
+        $this->scores = new ArrayCollection();
 
     }
 
@@ -192,6 +218,21 @@ class Quiz
         return $this;
     }
 
+    /**
+     * @return int
+     */
+    public function getNumber()
+    {
+        return $this->number;
+    }
+
+    /**
+     * @param int $number
+     */
+    public function setNumber($number)
+    {
+        $this->number = $number;
+    }
 
 
     /**
@@ -260,6 +301,7 @@ class Quiz
         }
         return $this;
     }
+
 
     /**
      * @return Mode

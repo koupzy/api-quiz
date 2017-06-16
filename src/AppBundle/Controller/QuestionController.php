@@ -21,7 +21,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Class QuestionController
@@ -93,15 +96,37 @@ class QuestionController extends Controller
                 ])
             ]),
             'propositions' => new Assert\Optional([
-                new Assert\Type(['type'=>'array']),
-                new Assert\Count(['max'=>10]),
-                new Assert\All([
-                    new Assert\Collection([
-                        'content'=>new Assert\Required([new Assert\NotBlank(),new Assert\NotNull()]),
-                        'truth'=> new Assert\Optional([new Assert\Type(['type'=>'boolean'])]),
-                        'point'=>new Assert\Optional([new Assert\Type(['type'=>'boolean'])])
-                    ])
-                ])
+                new Assert\Callback(function($object, ExecutionContextInterface $context){
+                    /** @var ValidatorInterface $validator */
+                    $validator = $context->getValidator();
+
+                    $errors = $validator->validate($object, new Assert\Type(['type'=>'array']));
+
+                    if ($errors->count() === 0) {
+                        $errors = $validator->validate($object, new Assert\Count(['max' => 10]));
+
+                        if ($errors->count() === 0) {
+                            $errors = $validator->validate($object, new Assert\All([
+                                new Assert\Collection([
+                                    'content'=>new Assert\Required([new Assert\NotBlank(),new Assert\NotNull()]),
+                                    'truth'=> new Assert\Optional([new Assert\Type(['type'=>'boolean'])]),
+                                    'point'=>new Assert\Optional([new Assert\Type(['type'=>'boolean'])])
+                                ])
+                            ]));
+
+                            return;
+                        }
+                    }
+
+                    /** @var ConstraintViolationInterface $error */
+                    foreach ($errors as $error) {
+                        $context->buildViolation($error->getMessageTemplate(), $error->getParameters())
+                                ->atPath($error->getPropertyPath())
+                                ->setInvalidValue($error->getInvalidValue())
+                                ->setPlural($error->getPlural())
+                                ->addViolation();
+                    }
+                })
             ])
         ]));
 

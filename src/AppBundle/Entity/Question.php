@@ -1,6 +1,8 @@
 <?php
 namespace AppBundle\Entity;
 
+use AppBundle\Model\Categorizable;
+use AppBundle\Model\levelable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -10,11 +12,12 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * @ORM\Table(name="question")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\QuestionRepository")
- *
  * @author Ange Paterson
  */
 class Question
 {
+    use Categorizable,levelable;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -31,6 +34,7 @@ class Question
      * @var string $content
      */
     private $content;
+
 
     /**
      * @var int $duration
@@ -157,24 +161,6 @@ class Question
     }
 
     /**
-     * @return Category
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
-     * @param Category $category
-     * @return $this
-     */
-    public function setCategory(Category $category)
-    {
-        $this->category = $category;
-        return $this;
-    }
-
-    /**
      * @return Collection
      */
     public function getPropositions()
@@ -271,22 +257,6 @@ class Question
         return $this;
     }
 
-    /**
-     * @return Level
-     */
-    public function getLevel()
-    {
-        return $this->level;
-    }
 
-    /**
-     * @param Level $level
-     * @return $this
-     */
-    public function setLevel(Level $level)
-    {
-        $this->level = $level;
-        return $this;
-    }
 
 }

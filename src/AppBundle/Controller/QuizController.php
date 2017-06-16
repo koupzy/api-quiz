@@ -8,10 +8,8 @@
 
 namespace AppBundle\Controller;
 
-
-use AppBundle\Entity\Quiz;
-use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use AppBundle\Model\QuizManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -25,13 +23,10 @@ class QuizController extends Controller
     /**
      * @param Request $request
      * @param $id
-     * @param $user
      * @return JsonResponse
      */
     public function createAction(Request $request, $id)
     {
-        ///** @var User $user */
-        //$user=$this->getUser();
 
        /** @var EntityManagerInterface $em */
         $em = $this->get('doctrine.orm.entity_manager');
@@ -77,6 +72,8 @@ class QuizController extends Controller
 
         }
 
+        /** @var QuizManagerInterface $quizManager */
+        $quizManager = $this->get('app.default_quiz_manager');
     }
 
     public function pauseAction()
