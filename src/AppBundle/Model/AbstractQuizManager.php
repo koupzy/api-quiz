@@ -26,29 +26,37 @@ abstract class AbstractQuizManager implements QuizManagerInterface
         $this->entityManager = $entityManager;
     }
 
-    public function create(User $user, Category $category = null, integer $nombre = null, Level $level = null, Mode $mode = null,bool $andFlush = true)
+    /**
+     * @param User $user
+     * @param Category|null $category
+     * @param int|null $nombre
+     * @param Level|null $level
+     * @param Mode|null $mode
+     * @param bool $andFlush
+     * @return Quiz
+     */
+    public function create(User $user, Category $category = null, integer $nombre = null, Level $level = null, Mode $mode = null, bool $andFlush = true)
     {
         $quiz = new Quiz();
         $quiz->setUser($user);
 
-        if (!$category === null) {
+        if ($category !== null) {
             $quiz->setCategory($category);
         }
 
-        if (!$nombre === null) {
+        if ($nombre !== null) {
             $quiz->setNumber($nombre);
         }
 
-        if (!$level === null) {
+        if ($level !== null) {
             $quiz->setLevel($level);
         }
 
-        if (!$mode === null) {
+        if ($mode !== null) {
             $quiz->setMode($mode);
         }
 
         $this->entityManager->persist($quiz);
-
         if ($andFlush === true) {
             $this->entityManager->flush($quiz);
         }
@@ -56,41 +64,53 @@ abstract class AbstractQuizManager implements QuizManagerInterface
         return $quiz;
     }
 
+    /**
+     * @param Quiz $quiz
+     */
     public function start(Quiz $quiz)
     {
-
-        /** @var EntityManagerInterface $em */
-        $em = $this->getDoctrine()->getManager();
-        $questions = $em->getRepository(Question::class)->findForQuiz($quiz->getNumber(),$quiz->getCategory(),$quiz->getLevel());
-        $sores = [];
+        $questions = $this->entityManager->getRepository(Question::class)->findForQuiz($quiz->getNumber(),$quiz->getCategory(),$quiz->getLevel());
+        $scores = [];
 
         foreach ($questions as $question) {
             $score = new Score($question, $quiz);
-            $sores[] = $score;
-            $em->persist($score);
+            $this->entityManager->persist($score);
+            $scores[] = $score;
         }
         unset($score);
 
-        $em->flush($sores);
+        $this->entityManager->flush($scores);
     }
 
-    public function delivery(Quiz $quiz)
+    /**
+     * @param Quiz $quiz
+     * @return Question
+     */
+    public function delivery(Quiz $quiz):Question
     {
-        $question = $this->getDoctrine->getManager()
-                    ->getRepository(Question::class)->findOneByScore($quiz);
+        $question = $this->entityManager->getRepository(Question::class)->findOneByQuiz($quiz);
         return $question;
     }
 
+    /**
+     * @param Quiz $quiz
+     */
     public function pause(Quiz $quiz)
     {
         $quiz->setPaused(true);
     }
 
+    /**
+     * @param Quiz $quiz
+     */
     public function stop(Quiz $quiz)
     {
         $quiz->setFinished(true);
     }
 
+    /**
+     * @param Quiz $quiz
+     */
     public function resume(Quiz $quiz)
     {
         $quiz->setPaused(false);

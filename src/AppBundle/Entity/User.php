@@ -19,7 +19,7 @@ class User
     /**
      * @var integer
      * @ORM\Column(type="integer",options={"unsigned= true"})
-     * @ORM\Id
+     * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
@@ -184,8 +184,7 @@ class User
      */
     public function removeQuizs(Quiz $quiz)
     {
-        if (true === $this->quizs->contains($quiz))
-        {
+        if (true === $this->quizs->contains($quiz)) {
             $this->quizs->removeElement($quiz);
         }
         return $this;
@@ -195,7 +194,7 @@ class User
     public function setQuizs(ArrayCollection $quizs){
 
         $this->quizs = new ArrayCollection();
-        foreach ($quizs as $quiz){
+        foreach ($quizs as $quiz) {
             $this->addQuizs($quiz);
         }
         return $this;

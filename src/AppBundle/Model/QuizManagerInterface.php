@@ -11,11 +11,9 @@ use AppBundle\Entity\User;
  * Interface QuizManagerInterface
  * @package AppBundle\Model
  */
-interface QuizManagerInterface{
-
-
-    public function create(User $user,Category $category = null,integer $nombre = null,Level $level = null,Mode $mode = null);
-
+interface QuizManagerInterface
+{
+    public function create(User $user, Category $category = null, integer $nombre = null, Level $level = null, Mode $mode = null, bool $andFlush = true);
 
     public function start(Quiz $quiz);
 

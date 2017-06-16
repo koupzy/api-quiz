@@ -1,15 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: yannick
- * Date: 08/06/17
- * Time: 18:17
- */
-
 namespace AppBundle\Model;
 
+use AppBundle\Entity\Level;
 
-trait levelable
+trait Levelable
 {
     /**
      * @return Level
