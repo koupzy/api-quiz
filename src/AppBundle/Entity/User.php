@@ -9,7 +9,7 @@ use AppBundle\Entity\Quiz as Quiz;
 /**
  * Class User
  *
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  * @ORM\Table(name="user")
  *
  * @author Joel

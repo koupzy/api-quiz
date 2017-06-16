@@ -1,0 +1,11 @@
+api_quiz_quiz_list:
+    path: /quizs
+    defaults: {_controller: AppBundle:Quiz:list}
+    methods: GET
+
+api_quiz_quiz_create:
+    path: /quizs/{id}
+    defaults: {_controller: AppBundle:Quiz:create}
+    methods: POST
+    requirements:
+        id: \d+

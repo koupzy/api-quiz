@@ -1,0 +1,30 @@
+api_quiz_user_list:
+    path: /users
+    defaults: {_controller: AppBundle:User:list}
+    methods: GET
+
+api_quiz_user_read:
+    path: /users/{id}
+    defaults: {_controller: AppBundle:User:read}
+    requirements:
+        id: \d+
+    methods: GET
+
+api_quiz_user_create:
+    path: /users
+    defaults: {_controller: AppBundle:User:create}
+    methods: POST
+
+api_quiz_user_update:
+    path: /users/{id}
+    defaults: {_controller: AppBundle:User:update}
+    requirements:
+        id: \d+
+    methods: PUT
+
+api_quiz_user_delete:
+    path: /users/{id}
+    defaults: {_controller: AppBundle:User:delete}
+    requirements:
+        id: \d+
+    methods: DELETE

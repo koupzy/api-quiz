@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class Quiz
  * @ORM\Table(name="quiz")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\QuizRepository")
  *
  * @author joel
  */

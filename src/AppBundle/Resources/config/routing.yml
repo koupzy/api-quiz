@@ -9,3 +9,9 @@ api_quiz_question:
 
 api_quiz_propositon:
     resource: '@AppBundle/Resources/config/routing/proposition.yml'
+
+api_quiz_quiz:
+    resource: '@AppBundle/Resources/config/routing/quiz.yml'
+
+api_quiz_user:
+    resource: '@AppBundle/Resources/config/routing/user.yml'
