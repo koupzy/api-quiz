@@ -4,8 +4,16 @@ api_quiz_quiz_list:
     methods: GET
 
 api_quiz_quiz_create:
-    path: /quizs/{id}
+    path: /users/{id}/quizs
     defaults: {_controller: AppBundle:Quiz:create}
     methods: POST
     requirements:
+        id: \d+
+
+api_quiz_quiz_read:
+    path: /users/{userId}/quizs/{id}
+    defaults: {_controller: AppBundle:Quiz:read}
+    methods: GET
+    requirements:
+        userId: \d+
         id: \d+
