@@ -26,7 +26,16 @@ abstract class AbstractQuizManager implements QuizManagerInterface
         $this->entityManager = $entityManager;
     }
 
-    public function create(User $user, Category $category = null, integer $nombre = null, Level $level = null, Mode $mode = null,bool $andFlush = true)
+    /**
+     * @param User $user
+     * @param Category|null $category
+     * @param int|null $nombre
+     * @param Level|null $level
+     * @param Mode|null $mode
+     * @param bool $andFlush
+     * @return Quiz
+     */
+    public function create(User $user = null, Category $category = null, int $nombre = null, Level $level = null, Mode $mode = null,bool $andFlush = true)
     {
         $quiz = new Quiz();
             $quiz->setUser($user);
