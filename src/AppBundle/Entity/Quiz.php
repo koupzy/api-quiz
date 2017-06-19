@@ -12,6 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="quiz")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\QuizRepository")
+<<<<<<< HEAD
+=======
+ * @ORM\HasLifecycleCallbacks()
+ *
+ * @author joel
+>>>>>>> fe4eddedcd0e5a1e083c4ab384745e96172f9615
  */
 class Quiz
 {
@@ -314,4 +320,18 @@ class Quiz
         $this->mode = $mode;
     }
 
+    /**
+     * @ORM\PrePersist()
+     */
+    public function onPrePersist() {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = $this->createdAt;
+    }
+
+    /**
+     * @ORM\PreUpdate()
+     */
+    protected function onPreUpdate() {
+        $this->updatedAt = new \DateTime();
+    }
 }

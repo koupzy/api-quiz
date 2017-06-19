@@ -162,3 +162,21 @@ oka_pagination:
                 delimiter: ','
                 attributes_availables: ['name']
 
+
+
+        quiz:
+            db_driver: orm
+            model_manager_name: default
+            class: AppBundle\Entity\Quiz
+            item_per_page: 10
+            max_page_number: 4000
+            template: OkaPaginationBundle:Pagination:paginate.html.twig
+            request:
+                query_map:
+                    page: page
+                    item_per_page: item_per_page
+                    sort: sort
+                    desc: desc
+            sort:
+                delimiter: ','
+                attributes_availables: ['createdAt']

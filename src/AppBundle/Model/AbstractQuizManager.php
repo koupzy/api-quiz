@@ -38,7 +38,8 @@ abstract class AbstractQuizManager implements QuizManagerInterface
     public function create(User $user, Category $category = null, integer $nombre = null, Level $level = null, Mode $mode = null, bool $andFlush = true)
     {
         $quiz = new Quiz();
-        $quiz->setUser($user);
+            $quiz->setUser($user);
+
 
         if ($category !== null) {
             $quiz->setCategory($category);

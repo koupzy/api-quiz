@@ -1,24 +1,56 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: yannick
- * Date: 23/05/17
- * Time: 16:15
- */
-
 namespace AppBundle\Controller;
 
+
+use AppBundle\Entity\Category;
+use AppBundle\Entity\Level;
+use AppBundle\Entity\Quiz;
+use AppBundle\Entity\User;
+use AppBundle\Model\AbstractQuizManager;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use AppBundle\Model\QuizManagerInterface;
+use Oka\PaginationBundle\Exception\SortAttributeNotAvailableException;
+use Oka\PaginationBundle\Service\PaginationManager;
+use Oka\PaginationBundle\Util\PaginationResultSet;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\BrowserKit\Request;
-use AppBundle\Model\QuizManager;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 
+
+/**
+ * Class QuizController
+ * @package AppBundle\Controller
+ *
+ * @author Ange Paterson
+ */
 class QuizController extends Controller
 {
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+public function listAction(Request $request)
+{
+    /** @var PaginationManager $paginationManager */
+    $paginationManager = $this->get('oka_pagination.manager');
+
+    try {
+        /** @var PaginationResultSet $paginationResultSet */
+        $paginationResultSet = $paginationManager->paginate('quiz', $request, [], ['createdAt' => 'ASC']);
+
+        return new JsonResponse($this->get('jms_serializer')->toArray($paginationResultSet), 200);
+    } catch (SortAttributeNotAvailableException $e) {
+        return new JsonResponse([
+            'message' => $e->getMessage()
+        ], 400);
+    }
+}
+
 
     /**
      * @param Request $request
@@ -27,31 +59,30 @@ class QuizController extends Controller
      */
     public function createAction(Request $request, $id)
     {
-
-       /** @var EntityManagerInterface $em */
-        $em = $this->get('doctrine.orm.entity_manager');
-        $user= $em->getRepository('AppBundle:User')
-            ->find($id);
-
         $requestContent = json_decode($request->getContent(), true);
         $validator = $this->get('validator');
         $constraints = new Assert\Collection([
-            'created_at' => new Assert\DateTime([new Assert\NotBlank(), new Assert\Required()]),
-            'mode' => new Assert\Required([new Assert\All([
+            'mode' => new Assert\Optional([
                 new Assert\Collection([
-                    'label' => new Assert\NotNull([ new Assert\NotBlank()])
+                    'id' => new Assert\Required([ new Assert\Type(['type' => 'integer'])])
                 ])
-            ])]),
-
-            'category' => new Assert\Required([new Assert\Collection([
-                'name' => new Assert\NotBlank([ new Assert\NotNull()])])]),
-
-            'user' => new Assert\Required([new Assert\Collection([
-                'lastName'=> new Assert\NotBlank([new Assert\NotNull()]),
-                'firstName'=> new Assert\NotBlank([new Assert\NotNull()]),
-                'userName'=> new Assert\NotBlank([new Assert\NotNull()]),
-            ])])
-
+            ]),
+            'level' => new Assert\Optional([
+                new Assert\Collection([
+                    'id' => new Assert\Required([ new Assert\Type(['type' => 'integer'])])
+                ])
+            ]),
+            'category' => new Assert\Optional([
+                new Assert\Collection([
+                    'id' => new Assert\Required([ new Assert\Type(['type' => 'integer'])])
+                ])
+            ]),
+            'user' => new Assert\Optional([
+                new Assert\Collection([
+                    'id'=> new Assert\Required([new Assert\Type(['type' => 'integer'])])
+                ])
+            ]),
+            'number' => new Assert\Optional([new Assert\Type(['type' => 'integer'])])
         ]);
 
         /** @var ConstraintViolationListInterface $errors */
@@ -59,27 +90,85 @@ class QuizController extends Controller
 
         if ($errors->count() === 0)
         {
-            if (isset($requestContent['user']))
+            /** @var EntityManagerInterface $em */
+            $em = $this->get('doctrine.orm.entity_manager');
+
+            /** @var User $user */
+            if (!$user = $em->getRepository('AppBundle:User')->find($id))
             {
-                QuizManager::create($user, $requestContent['category'], $requestContent['mode'], $requestContent['']);
-                return new JsonResponse(['Message' => 'Quiz created'], 201);
+                return new JsonResponse(['Message' => 'User not found'], 404);
+            }
+
+            if (isset($requestContent['category'])) {
+                /** @var Category $category */
+                if (!$category = $em->getRepository('AppBundle:Category')->find($requestContent['category']['id']))
+                {
+                    return new JsonResponse(['Message' => 'Category not found'], 404);
+                }
+            } else {
+                $category = null;
+            }
+
+            if (isset($requestContent['level'])) {
+                /** @var Level $level */
+                if (!$level = $em->getRepository('AppBundle:Level')->find($requestContent['level']['id'])) {
+                    return new JsonResponse(['Message' => 'Level not found'], 404);
+                }
+            } else {
+                $level = null;
+            }
+
+            /** @var QuizManagerInterface $quizManager */
+            $quizManager = $this->get('app.default_quiz_manager');
+            $quiz = $quizManager->create($user, $category, isset($requestContent['number']) ? $requestContent['number'] : 7, $level);
+
+            return new JsonResponse($this->get('jms_serializer')->toArray($quiz), 201);
+        }
+
+        $extras = [];
+        /** @var ConstraintViolationInterface $error */
+        foreach ($errors as $error) {
+            $extras[] = [
+                'property' => $error->getPropertyPath(),
+                'message' => $error->getMessage(),
+            ];
+        }
+
+        return new JsonResponse([
+            'message' => 'Request invalid.',
+            'extra' => $extras
+        ], 400);
+    }
+
+    /**
+     * @param $userId
+     * @param $id
+     * @return JsonResponse
+     */
+    public function readAction($userId, $id)
+    {
+        /** @var EntityManager $em */
+        $em = $this->get('doctrine.orm.entity_manager');
+        ;
+
+        /** @var User $user */
+        if ($user = $em->getRepository(User::class)->find($userId))
+        {
+            if ($quiz = $em->getRepository(Quiz::class)->find($id))
+            {
+                return new JsonResponse($this->get('jms_serializer')->toArray($quiz), 200);
+            }
+            else{
+                return new JsonResponse(['message' => sprintf('Quiz from user "%s" not found.', $user->getUsername())], 404);
             }
         }
         else{
-          $exception =  $this->createNotFoundException('The product does not exist');
-
-          return new JsonResponse($exception, 400);
-
+            return new JsonResponse(['message' => 'User not found'], 404);
         }
 
-        /** @var QuizManagerInterface $quizManager */
-        $quizManager = $this->get('app.default_quiz_manager');
     }
 
-    public function pauseAction()
-    {
 
-    }
 
 
 }
