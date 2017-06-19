@@ -6,18 +6,15 @@ use AppBundle\Model\Levelable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @author joel
  *
  * @ORM\Table(name="quiz")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\QuizRepository")
-<<<<<<< HEAD
-=======
  * @ORM\HasLifecycleCallbacks()
- *
- * @author joel
->>>>>>> fe4eddedcd0e5a1e083c4ab384745e96172f9615
+ * @JMS\ExclusionPolicy("all")
  */
 class Quiz
 {
@@ -28,42 +25,49 @@ class Quiz
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer", options={"unsigned= true"})
      * @var integer $id
+     * @JMS\Expose()
      */
     private $id;
 
     /**
      * @var \DateTime $createdAt
      * @ORM\Column(name="created_at",type="datetime")
+     * @JMS\Expose()
      */
     private $createdAt;
 
     /**
      * @var \DateTime $updatedAt
      * @ORM\Column(name="updated_at",type="datetime")
+     * @JMS\Expose()
      */
     private $updatedAt;
 
     /**
      * @var boolean $pause
      * @ORM\Column(type="boolean")
+     * @JMS\Expose()
      */
     private $paused;
 
     /**
      * @var boolean $stop
      * @ORM\Column(type="boolean")
+     * @JMS\Expose()
      */
     private $finished;
 
     /**
      * @var integer $note
      * @ORM\Column(type="integer")
+     * @JMS\Expose()
      */
     private $note;
 
     /**
      * @var integer $number
      * @ORM\Column(type="integer")
+     * @JMS\Expose()
      */
     private $number;
 
@@ -110,7 +114,6 @@ class Quiz
         $this->number = 20;
         $this->note = 7;
         $this->scores = new ArrayCollection();
-
     }
 
     /**

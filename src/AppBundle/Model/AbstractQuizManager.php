@@ -35,7 +35,7 @@ abstract class AbstractQuizManager implements QuizManagerInterface
      * @param bool $andFlush
      * @return Quiz
      */
-    public function create(User $user, Category $category = null, integer $nombre = null, Level $level = null, Mode $mode = null, bool $andFlush = true)
+    public function create(User $user, Category $category = null, int $nombre = null, Level $level = null, Mode $mode = null, bool $andFlush = true)
     {
         $quiz = new Quiz();
             $quiz->setUser($user);

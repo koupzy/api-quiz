@@ -120,7 +120,7 @@ public function listAction(Request $request)
 
             /** @var QuizManagerInterface $quizManager */
             $quizManager = $this->get('app.default_quiz_manager');
-            $quiz = $quizManager->create($user, $category, isset($requestContent['number']) ? $requestContent['number'] : 7, $level);
+            $quiz = $quizManager->create($user);
 
             return new JsonResponse($this->get('jms_serializer')->toArray($quiz), 201);
         }
