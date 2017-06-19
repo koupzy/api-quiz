@@ -58,7 +58,6 @@ abstract class AbstractQuizManager implements QuizManagerInterface
         }
 
         $this->entityManager->persist($quiz);
-
         if ($andFlush === true) {
             $this->entityManager->flush($quiz);
         }
@@ -66,41 +65,53 @@ abstract class AbstractQuizManager implements QuizManagerInterface
         return $quiz;
     }
 
+    /**
+     * @param Quiz $quiz
+     */
     public function start(Quiz $quiz)
     {
-
-        /** @var EntityManagerInterface $em */
-        $em = $this->getDoctrine()->getManager();
-        $questions = $em->getRepository(Question::class)->findForQuiz($quiz->getNumber(),$quiz->getCategory(),$quiz->getLevel());
-        $sores = [];
+        $questions = $this->entityManager->getRepository(Question::class)->findForQuiz($quiz->getNumber(),$quiz->getCategory(),$quiz->getLevel());
+        $scores = [];
 
         foreach ($questions as $question) {
             $score = new Score($question, $quiz);
-            $sores[] = $score;
-            $em->persist($score);
+            $this->entityManager->persist($score);
+            $scores[] = $score;
         }
         unset($score);
 
-        $em->flush($sores);
+        $this->entityManager->flush($scores);
     }
 
-    public function delivery(Quiz $quiz)
+    /**
+     * @param Quiz $quiz
+     * @return Question
+     */
+    public function delivery(Quiz $quiz):Question
     {
-        $question = $this->getDoctrine->getManager()
-                    ->getRepository(Question::class)->findOneByScore($quiz);
+        $question = $this->entityManager->getRepository(Question::class)->findOneByQuiz($quiz);
         return $question;
     }
 
+    /**
+     * @param Quiz $quiz
+     */
     public function pause(Quiz $quiz)
     {
         $quiz->setPaused(true);
     }
 
+    /**
+     * @param Quiz $quiz
+     */
     public function stop(Quiz $quiz)
     {
         $quiz->setFinished(true);
     }
 
+    /**
+     * @param Quiz $quiz
+     */
     public function resume(Quiz $quiz)
     {
         $quiz->setPaused(false);

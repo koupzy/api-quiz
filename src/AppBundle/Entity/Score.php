@@ -13,40 +13,40 @@ use Doctrine\ORM\Mapping as ORM;
 class Score
 {
     /**
-     * @var Quiz
-     * @ORM\ManyToOne(targetEntity="Quiz", inversedBy="scores")
+     * @ORM\Id()
+     * @ORM\ManyToOne(targetEntity="Quiz", inversedBy="scores"))
      * @ORM\JoinColumn(name="quiz_id", referencedColumnName="id")
-     * @ORM\Id
+     * @var Quiz $quiz
      */
     private $quiz;
 
     /**
      * @ORM\Id()
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Question", inversedBy="scores")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Question", inversedBy="scores"))
      * @ORM\JoinColumn(name="question_id", referencedColumnName="id")
      * @var Question $question
      */
     private $question;
 
     /**
-     * @var boolean $delivered
      * @ORM\Column(type="boolean")
+     * @var boolean $delivered
      */
     private $delivered;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(name="matching", type="boolean")
      * @var boolean $match
      */
-    private $match;
+    private $matching;
 
 
     public function __construct(Question $question, Quiz $quiz)
     {
-        $this->match = false;
+        $this->matching = false;
         $this->delivered = false;
-        $this->question = $question;
-        $this->quiz = $quiz;
+        $this->setQuiz($quiz);
+        $this->setQuestion($question);
     }
 
     /**
@@ -64,6 +64,7 @@ class Score
     public function setQuiz($quiz)
     {
         $this->quiz = $quiz;
+        $quiz->addScore($this);
         return $this;
     }
 
@@ -82,6 +83,8 @@ class Score
     public function setQuestion($question)
     {
         $this->question = $question;
+        $question->addScore($this);
+        return $this;
     }
 
     /**
@@ -94,31 +97,33 @@ class Score
 
     /**
      * @param boolean $delivered
+     * @return $this
      */
     public function setDelivered($delivered)
     {
         $this->delivered = $delivered;
+        return $this;
     }
-
-
 
     /**
      * @return bool
      */
-
-    public function isMatch()
+    public function isMatching(): bool
     {
-        return $this->match;
+        return $this->matching;
     }
 
     /**
+     * @param bool $matching
      * @return $this
-     * @param bool $match
      */
-    public function setMatch($match)
+    public function setMatching(bool $matching)
     {
-        $this->match = $match;
+        $this->matching = $matching;
         return $this;
     }
+
+
+
 
 }

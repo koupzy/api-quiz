@@ -1,6 +1,8 @@
 <?php
 namespace AppBundle\Model;
 
+use AppBundle\Entity\Category;
+
 trait Categorizable
 {
     /**

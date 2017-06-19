@@ -1,85 +1,86 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: yannick
- * Date: 19/05/17
- * Time: 09:36
- */
-
 namespace AppBundle\Entity;
+
 use AppBundle\Model\Categorizable;
-use AppBundle\Model\levelable;
+use AppBundle\Model\Levelable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
+use JMS\Serializer\Annotation as JMS;
 
 /**
- * Class Quiz
+ * @author joel
+ *
  * @ORM\Table(name="quiz")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\QuizRepository")
  * @ORM\HasLifecycleCallbacks()
- *
- * @author joel
+ * @JMS\ExclusionPolicy("all")
  */
 class Quiz
 {
-    use Categorizable,levelable;
+    use Categorizable, Levelable;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer", options={"unsigned= true"})
      * @var integer $id
+     * @JMS\Expose()
      */
     private $id;
 
     /**
      * @var \DateTime $createdAt
      * @ORM\Column(name="created_at",type="datetime")
+     * @JMS\Expose()
      */
     private $createdAt;
 
     /**
      * @var \DateTime $updatedAt
      * @ORM\Column(name="updated_at",type="datetime")
+     * @JMS\Expose()
      */
     private $updatedAt;
 
     /**
      * @var boolean $pause
      * @ORM\Column(type="boolean")
+     * @JMS\Expose()
      */
     private $paused;
 
     /**
      * @var boolean $stop
      * @ORM\Column(type="boolean")
+     * @JMS\Expose()
      */
     private $finished;
 
     /**
      * @var integer $note
      * @ORM\Column(type="integer")
+     * @JMS\Expose()
      */
     private $note;
 
     /**
      * @var integer $number
      * @ORM\Column(type="integer")
+     * @JMS\Expose()
      */
     private $number;
 
-
     /**
      * @var User $user
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="quizs", fetch="EXTRA_LAZY")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="quizs", fetch="EXTRA_LAZY"))
      * @ORM\JoinColumn(name="user_id",referencedColumnName="id")
      */
     private $user;
 
     /**
-     * @var Collection $scores
      * @ORM\OneToMany(targetEntity="Score", mappedBy="quiz")
+     * @var Collection $scores
      */
     private $scores;
 
@@ -107,11 +108,12 @@ class Quiz
     public function __construct()
     {
         $this->createdAt = new \DateTime("now");
+        $this->updatedAt = new \DateTime("now");
         $this->paused = false;
         $this->finished = false;
         $this->number = 20;
+        $this->note = 7;
         $this->scores = new ArrayCollection();
-
     }
 
     /**
@@ -248,7 +250,7 @@ class Quiz
      * @param \AppBundle\Entity\User $user
      * @return $this
      */
-    public function setUser($user)
+    public function setUser(User $user)
     {
         $this->user = $user;
         return $this;
