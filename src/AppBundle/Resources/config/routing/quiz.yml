@@ -17,3 +17,10 @@ api_quiz_quiz_read:
     requirements:
         userId: \d+
         id: \d+
+
+api_quiz_users_quiz_list:
+    path: /users/{userId}/quizs
+    defaults: {_controller: AppBundle:Quiz:userQuiz}
+    methods: GET
+    requirements:
+        userId: \d+

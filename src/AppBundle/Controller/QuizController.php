@@ -120,7 +120,7 @@ public function listAction(Request $request)
 
             /** @var QuizManagerInterface $quizManager */
             $quizManager = $this->get('app.default_quiz_manager');
-            $quiz = $quizManager->create($user);
+            $quiz = $quizManager->create($user, $category, $level);
 
             return new JsonResponse($this->get('jms_serializer')->toArray($quiz), 201);
         }
@@ -149,7 +149,6 @@ public function listAction(Request $request)
     {
         /** @var EntityManager $em */
         $em = $this->get('doctrine.orm.entity_manager');
-        ;
 
         /** @var User $user */
         if ($user = $em->getRepository(User::class)->find($userId))
@@ -168,6 +167,20 @@ public function listAction(Request $request)
 
     }
 
+    public function userQuizAction($userId)
+    {
+        /** @var EntityManager $em */
+        $em = $this->get('doctrine.orm.entity_manager');
+
+        /** @var User $user */
+        if ($user = $em->getRepository(User::class)->find($userId))
+        {
+            return new JsonResponse($this->get('jms_serializer')->toArray($user->getQuizs()), 200);
+        }
+        else{
+            return new JsonResponse(['message' => 'User not found'], 404);
+        }
+    }
 
 
 

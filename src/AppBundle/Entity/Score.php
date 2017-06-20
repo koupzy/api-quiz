@@ -108,7 +108,7 @@ class Score
     /**
      * @return bool
      */
-    public function isMatching(): bool
+    public function isMatching()
     {
         return $this->matching;
     }

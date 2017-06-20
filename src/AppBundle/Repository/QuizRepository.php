@@ -9,6 +9,7 @@
 namespace AppBundle\Repository;
 
 
+use AppBundle\Entity\Quiz;
 use Doctrine\ORM\EntityRepository;
 use AppBundle\Entity\User;
 
@@ -38,6 +39,11 @@ class QuizRepository extends EntityRepository
         }
 
         $query->setDQL(sprintf($dql, $this->_entityName))->execute();
+    }
+
+    public function selectAll(Quiz $quiz){
+        $this->_em->createQuery(sprintf('SELECT * FROM %s q  WHERE q.user = :id', $this->_entityName))
+            ->execute(['id' => $quiz->getId()]);
     }
 
 }

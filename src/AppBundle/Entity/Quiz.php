@@ -88,6 +88,7 @@ class Quiz
      * @var Category $category
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="quizs")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * @JMS\Expose()
      */
     private $category;
 
