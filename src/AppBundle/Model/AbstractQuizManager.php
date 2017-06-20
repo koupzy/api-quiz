@@ -87,7 +87,7 @@ abstract class AbstractQuizManager implements QuizManagerInterface
      * @param Quiz $quiz
      * @return Question
      */
-    public function delivery(Quiz $quiz):Question
+    public function delivery(Quiz $quiz)
     {
         $question = $this->entityManager->getRepository(Question::class)->findOneByQuiz($quiz);
         return $question;

@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Level;
 use AppBundle\Entity\Quiz;
+use AppBundle\Entity\Score;
 use AppBundle\Entity\User;
 use AppBundle\Model\AbstractQuizManager;
 use Doctrine\ORM\EntityManager;
@@ -149,7 +150,6 @@ public function listAction(Request $request)
     {
         /** @var EntityManager $em */
         $em = $this->get('doctrine.orm.entity_manager');
-        ;
 
         /** @var User $user */
         if ($user = $em->getRepository(User::class)->find($userId))
@@ -168,7 +168,28 @@ public function listAction(Request $request)
 
     }
 
+    public function deliverAction($quizId)
+    {
+        /** @var EntityManagerInterface $em $em */
+        $em = $this->get('doctrine.orm.entity_manager');
 
+        if (!$quiz = $em->getRepository('AppBundle:Quiz')->find($quizId)){
+            return new JsonResponse(['message'=> sprintf('Quiz with id %s not found',$quizId)],404);
+        }
 
+        /** @var QuizManagerInterface $quizManager */
+        $quizManager = $this->get('app.default_quiz_manager');
+        $question = $quizManager->delivery($quiz);
+        $score = $em->getRepository('AppBundle:Score')->findOneBy(['question' => $question->getId(), 'quiz' => $quiz->getId()]);
+
+        if ($question !== null && $score !== null){
+            $score->setDelivered(true);
+            $em->flush();
+            return new JsonResponse($this->get('jms_serializer')->toArray($question),201);
+        }else{
+            return new JsonResponse(['message' => 'All question are deliver for this quiz'],404);
+        }
+
+    }
 
 }
