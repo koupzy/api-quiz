@@ -306,7 +306,6 @@ class Quiz
         return $this;
     }
 
-
     /**
      * @return Mode
      */
@@ -322,6 +321,7 @@ class Quiz
     public function setMode(Mode $mode)
     {
         $this->mode = $mode;
+        return $this;
     }
 
     /**

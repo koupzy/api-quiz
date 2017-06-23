@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Level;
 use AppBundle\Entity\Quiz;
+use AppBundle\Entity\Score;
 use AppBundle\Entity\User;
 use AppBundle\Model\AbstractQuizManager;
 use Doctrine\ORM\EntityManager;
@@ -183,5 +184,98 @@ public function listAction(Request $request)
     }
 
 
+    /**
+     * @param $quizId
+     * @return JsonResponse
+     */
+    public function deliverAction($quizId)
+    {
+        /** @var EntityManagerInterface $em $em */
+        $em = $this->get('doctrine.orm.entity_manager');
+
+        if (!$quiz = $em->getRepository('AppBundle:Quiz')->find($quizId)){
+            return new JsonResponse(['message'=> sprintf('Quiz with id %s not found',$quizId)],404);
+        }
+
+        /** @var QuizManagerInterface $quizManager */
+        $quizManager = $this->get('app.default_quiz_manager');
+        try {
+            if ($question = $quizManager->delivery($quiz)) {
+               if ($score = $em->getRepository('AppBundle:Score')->findOneBy(['question' => $question->getId(), 'quiz' => $quiz->getId()])) {
+                   $score->setDelivered(true);
+                   $em->flush();
+                   return new JsonResponse($this->get('jms_serializer')->toArray($question),200);
+               }
+            }
+            
+            return new JsonResponse(['message' => 'All question are deliver for this quiz'],400);
+
+        } catch (\Exception $e){
+            return new JsonResponse(['message' => $e->getMessage()],404);
+        }
+    }
+
+    /**
+     * @param $quizId
+     * @return JsonResponse
+     */
+    public function pauseAction($quizId)
+    {
+        /** @var EntityManagerInterface $em */
+        $em = $this->get('doctrine.orm.entity_manager');
+        /** @var QuizManagerInterface $quizManager */
+        $quizManager = $this->get('app.default_quiz_manager');
+        $quiz = $em->getRepository('AppBundle:Quiz')->find($quizId);
+        if ($quiz !== null) {
+            $quizManager->pause($quiz);
+            $em->flush($quiz);
+
+            return new JsonResponse($this->get('jms_serializer')->toArray($quiz),200);
+        }
+
+        return new JsonResponse(['message' => sprintf('Quiz with id %s not found',$quizId)],404);
+    }
+
+    /**
+     * @param $quizId
+     * @return JsonResponse
+     */
+    public function resumeAction($quizId)
+    {
+        /** @var EntityManagerInterface $em */
+        $em = $this->get('doctrine.orm.entity_manager');
+        /** @var QuizManagerInterface $quizManager */
+        $quizManager = $this->get('app.default_quiz_manager');
+        $quiz = $em->getRepository('AppBundle:Quiz')->find($quizId);
+        if ($quiz !== null) {
+            $quizManager->resume($quiz);
+            $em->flush($quiz);
+
+            return new JsonResponse($this->get('jms_serializer')->toArray($quiz),200);
+        }
+        return new JsonResponse(['message' => sprintf('Quiz with id %s not found',$quizId)],404);
+
+    }
+
+    /**
+     * @param $quizId
+     * @return JsonResponse
+     */
+    public function stopAction($quizId)
+    {
+        /** @var EntityManagerInterface $em */
+        $em = $this->get('doctrine.orm.entity_manager');
+        /** @var QuizManagerInterface $quizManger */
+        $quizManger = $this->get('app.default_quiz_manager');
+        $quiz = $em->getRepository('AppBundle:Quiz')->find($quizId);
+
+        if ($quiz !== null) {
+            $quizManger->stop($quiz);
+            $em->flush($quiz);
+            return new JsonResponse($this->get('jms_serializer')->toArray($quiz),200);
+        }
+
+        return new JsonResponse(['message' => sprintf('Quiz with id %s not found',$quizId)],404);
+    }
 
 }

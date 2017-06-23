@@ -13,6 +13,7 @@ use JMS\Serializer\Annotation as JMS;
  * @ORM\Table(name="question")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\QuestionRepository")
  * @author Ange Paterson
+ * @JMS\ExclusionPolicy("all")
  */
 class Question
 {
@@ -24,6 +25,7 @@ class Question
      * @ORM\Column(type="integer", options={"unsigned": true})
      * @JMS\Type("integer")
      * @var integer $id
+     * @JMS\Expose()
      */
     private $id;
 
@@ -32,6 +34,7 @@ class Question
      * @ORM\Column(type="string")
      * @JMS\Type("string")
      * @var string $content
+     * @JMS\Expose()
      */
     private $content;
 
@@ -40,6 +43,7 @@ class Question
      * @var int $duration
      * @ORM\Column(type="smallint", options={"unsigned": true})
      * @JMS\Type("integer")
+     * @JMS\Expose()
      */
     private $duration;
 
@@ -48,6 +52,7 @@ class Question
      * @var boolean $multipleChoice
      * @JMS\Type("boolean")
      * @JMS\SerializedName("multipleChoice")
+     * @JMS\Expose()
      */
     private $multipleChoice;
 
@@ -56,6 +61,7 @@ class Question
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      * @var Category $category
      * @JMS\Type("AppBundle\Entity\Category")
+     * @JMS\Expose()
      */
     private $category;
 
@@ -63,6 +69,7 @@ class Question
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Proposition", mappedBy="question", fetch="EAGER")
      * @var Collection $propositions
      * @JMS\Type("ArrayCollection<AppBundle\Entity\Proposition>")
+     * @JMS\Expose()
      */
     private $propositions;
 

@@ -24,3 +24,31 @@ api_quiz_users_quiz_list:
     methods: GET
     requirements:
         userId: \d+
+
+api_quiz_quiz_delivery:
+    path: /quizs/{quizId}/deliver
+    defaults: {_controller: AppBundle:Quiz:deliver}
+    methods: GET
+    requirements:
+        quizId: \d+
+
+api_quiz_quiz_pause:
+    path: /quizs/{quizId}/pause
+    defaults: {_controller: AppBundle:Quiz:pause}
+    methods: PUT
+    requirements:
+        quizId: \d+
+
+api_quiz_quiz_resume:
+    path: /quizs/{quizId}/resume
+    defaults: {_controller: AppBundle:Quiz:resume}
+    methods: PUT
+    requirements:
+        quizId: \d+
+
+api_quiz_quiz_stop:
+    path: /quizs/{quizId}/stop
+    defaults: {_controller: AppBundle:Quiz:stop}
+    methods: PUT
+    requirements:
+        quizId: \d+

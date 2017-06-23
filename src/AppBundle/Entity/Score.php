@@ -2,6 +2,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Class Score
@@ -9,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @author Peflyn Ange Paterson
  * @ORM\Table()
  * @ORM\Entity()
+ * @JMS\ExclusionPolicy("all")
  */
 class Score
 {
@@ -31,12 +33,14 @@ class Score
     /**
      * @ORM\Column(type="boolean")
      * @var boolean $delivered
+     * @JMS\Expose()
      */
     private $delivered;
 
     /**
      * @ORM\Column(name="matching", type="boolean")
      * @var boolean $match
+     * @JMS\Expose()
      */
     private $matching;
 
