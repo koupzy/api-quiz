@@ -8,6 +8,7 @@ use AppBundle\Entity\Question;
 use AppBundle\Entity\Quiz;
 use AppBundle\Entity\Score;
 use AppBundle\Entity\User;
+use AppBundle\Exception\QuizException;
 use Doctrine\ORM\EntityManagerInterface;
 
 /**
@@ -86,11 +87,21 @@ abstract class AbstractQuizManager implements QuizManagerInterface
     /**
      * @param Quiz $quiz
      * @return Question
+     * @throws QuizException
      */
     public function delivery(Quiz $quiz)
     {
+        if (true === $quiz->isPaused() || true === $quiz->isFinished()) {
+            throw new QuizException('Quiz is paused or finished');
+        }
+
         $question = $this->entityManager->getRepository(Question::class)->findOneByQuiz($quiz);
-        return $question;
+
+        if ($question !== null) {
+            return $question;
+        }
+
+        $this->stop($quiz);
     }
 
     /**
