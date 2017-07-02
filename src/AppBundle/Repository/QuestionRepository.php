@@ -75,4 +75,9 @@ class QuestionRepository extends EntityRepository
         return $query->getOneOrNullResult();
     }
 
+    public function detachChildForLevel(Level $level){
+        $this->_em->createQuery(sprintf('UPDATE %s q SET q.level = NULL WHERE q.level = :id', $this->_entityName))
+            ->execute(['id' => $level->getId()]);
+    }
+
 }

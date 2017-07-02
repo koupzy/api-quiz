@@ -9,6 +9,7 @@
 namespace AppBundle\Repository;
 
 
+use AppBundle\Entity\Level;
 use AppBundle\Entity\Quiz;
 use Doctrine\ORM\EntityRepository;
 use AppBundle\Entity\User;
@@ -45,5 +46,14 @@ class QuizRepository extends EntityRepository
         $this->_em->createQuery(sprintf('SELECT * FROM %s q  WHERE q.user = :id', $this->_entityName))
             ->execute(['id' => $quiz->getId()]);
     }
+
+    /**
+     * @param Level $level
+     */
+    public function detachAllChild(Level $level){
+        $this->_em->createQuery(sprintf('UPDATE %s q SET q.level = NULL WHERE q.level = :id', $this->_entityName))
+            ->execute(['id' => $level->getId()]);
+    }
+
 
 }

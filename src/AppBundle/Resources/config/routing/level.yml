@@ -1,0 +1,30 @@
+api_quiz_level_list:
+    path: /levels
+    defaults: {_controller: AppBundle:Level:list}
+    methods: GET
+
+api_quiz_level_create:
+    path: /levels
+    defaults: {_controller: AppBundle:Level:create}
+    methods: POST
+
+api_quiz_level_delete:
+    path: /levels/{id}
+    defaults: {_controller: AppBundle:Level:delete}
+    methods: DELETE
+    requirements:
+        id: \d+
+
+api_quiz_level_read:
+    path: /levels/{id}
+    defaults: {_controller: AppBundle:Level:read}
+    methods: GET
+    requirements:
+        id: \d+
+
+api_quiz_level_update:
+    path: /levels/{id}
+    defaults: {_controller: AppBundle:Level:update}
+    methods: PUT
+    requirements:
+        id: \d+

@@ -15,3 +15,6 @@ api_quiz_quiz:
 
 api_quiz_user:
     resource: '@AppBundle/Resources/config/routing/user.yml'
+
+api_quiz_level:
+    resource: '@AppBundle/Resources/config/routing/level.yml'
