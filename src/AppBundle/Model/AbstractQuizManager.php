@@ -9,6 +9,7 @@ use AppBundle\Entity\Quiz;
 use AppBundle\Entity\Score;
 use AppBundle\Entity\User;
 use AppBundle\Exception\QuizException;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
 
 /**
@@ -71,13 +72,20 @@ abstract class AbstractQuizManager implements QuizManagerInterface
      */
     public function start(Quiz $quiz)
     {
+        /** @var Collection $questions */
         $questions = $this->entityManager->getRepository(Question::class)->findForQuiz($quiz->getNumber(),$quiz->getCategory(),$quiz->getLevel());
         $scores = [];
 
         foreach ($questions as $question) {
-            $score = new Score($question, $quiz);
-            $this->entityManager->persist($score);
-            $scores[] = $score;
+            /** @var Collection $propositions */
+            $propositions = $question->getProposions();
+
+            if ($propositions->count() < 1) {
+
+                $score = new Score($question, $quiz);
+                $this->entityManager->persist($score);
+                $scores[] = $score;
+            }
         }
         unset($score);
 

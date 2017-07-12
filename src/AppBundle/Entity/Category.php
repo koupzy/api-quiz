@@ -5,12 +5,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Entity()
  * @ORM\Table(name="category")
  * @UniqueEntity(fields="name")
  * @author Ange Paterson
+ * @JMS\ExclusionPolicy("all")
  */
 class Category
 {
@@ -19,12 +21,14 @@ class Category
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="smallint", options={"unsigned": true})
      * @var integer $id
+     * @JMS\Expose()
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", unique=true)
      * @var string $name
+     * @JMS\Expose()
      */
     private $name;
 

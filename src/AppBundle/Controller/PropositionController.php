@@ -121,11 +121,8 @@ class PropositionController extends Controller
             return new JsonResponse(['message' => 'User not found'],404);
         }
 
-
         return new Response($json,200,array('Content-Type'=>'application/json'));
     }
-
-
 
     /**
      * @param Request $request
@@ -135,7 +132,7 @@ class PropositionController extends Controller
     public function updateAction(Request $request,$id){
         /** @var EntityManager $em */
         $em = $this->get('doctrine.orm.entity_manager');
-        /** @var Proposition $propositon */
+        /** @var Proposition $proposition*/
         if (!$proposition = $em->getRepository(Proposition::class)->find($id)){
             return new JsonResponse(['message'=>printf('proposition with id %s not found',$id)],404);
         }
@@ -185,9 +182,9 @@ class PropositionController extends Controller
     }
 
     /**
-     * @param Request $request
      * @param $id
      * @return JsonResponse
+     * @internal param Request $request
      */
     public function deleteAction($id){
 

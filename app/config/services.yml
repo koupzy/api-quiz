@@ -12,3 +12,8 @@ services:
     app.default_quiz_manager:
         class: AppBundle\Service\DefaultQuizManager
         parent: app.abstract_quiz_manager
+
+    app.exception_listener:
+        class: AppBundle\EventListener\ExceptionListener
+        tags:
+            - {name: kernel.event_listener, event: kernel.exception }
