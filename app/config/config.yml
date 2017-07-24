@@ -88,6 +88,9 @@ oka_pagination:
                     item_per_page: item_per_page
                     sort: sort
                     desc: desc
+                    filters:
+                        name:
+                            type: string
             sort:
                 delimiter: ','
                 attributes_availables: ['name']

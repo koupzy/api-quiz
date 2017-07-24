@@ -52,6 +52,7 @@ class CategoryController extends Controller
         $requestContent = json_decode($request->getContent(), true);
         $validator = $this->get('validator');
         $constraints = new Assert\Collection([
+            'id' => new Assert\Optional(),
             'name' => new Assert\Required([
                 new Assert\NotBlank(), new Assert\NotNull()
             ])
